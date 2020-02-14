@@ -1,0 +1,81 @@
+version: "3.6"
+
+services:
+  djprod:
+    build: .
+    restart: on-failure
+    env_file:
+      - ./.env
+    command: gunicorn --bind 0.0.0.0:8080 djangoproj.wsgi
+    ports:
+      - "6466:8080"
+    depends_on:
+      - nginx
+    working_dir: /code
+    # set user to root, group to www-data. All files should be delete-able by www-data group.
+    user: "0:33"
+    volumes:
+      - .:/code
+      #- ./mediafiles:/code/media
+      # use pip cache to reduce startup time..
+      # https://stackoverflow.com/questions/25305788/how-to-avoid-reinstalling-packages-when-building-docker-image-for-python-project
+      - ../datasys/python-dot-cache/pip/:/root/.cache/pip
+
+  nginx:
+    image: "nginx:1.16-alpine"
+    restart: always
+    working_dir: /code
+    volumes:
+      - .:/code
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      #- ./static:/code/static
+      #- ./mediafiles:/code/media
+    ports:
+      - "6467:80"
+
+  db:
+    image: mysql:5.7
+    restart: always
+    env_file:
+      - .env
+    # environment:
+    # MYSQL_DATABASE: test
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "6462:3306"
+    volumes:
+      #   use PWD in mysql files volume so each project folder has it's own database folder. This is for mistake proofing. https://github.com/docker/compose/issues/2636
+      - ../datasys/mysql$PWD:/var/lib/mysql/ # folder for mysql's internal data files.
+      - .:/root # folder for scripts, etc.
+      - ../data/home$PWD/:/home # folder for exported data, etc.
+      # - ../data/home-mysql499d/:/home # folder for exported data, etc.
+    #
+    # https://medium.freecodecamp.org/how-to-setup-log-rotation-for-a-docker-container-a508093912b2
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100k"
+        max-file: "2"
+
+
+  adminer:
+    # 10.4.1.231:6117/  use db or 10.4.1.228:3308 for server while logging in.
+    image: adminer:4.7
+    restart: always
+    ports:
+      - 6463:8080
+
+#
+#
+#   depends_on:
+#     - db
+# db:
+#   image: "postgres:10.3-alpine"
+#   restart: unless-stopped
+#   env_file:
+#     - ./.env
+#   ports:
+#     - "5432:5432"
+#   volumes:
+#     - ./postgres/data:/var/lib/postgresql/data
+

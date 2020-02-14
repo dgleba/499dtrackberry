@@ -1,0 +1,437 @@
+<!-- ********************************** -->
+<!-- ****   Kiosk_Production_Entry.html   *** -->
+<!-- ********************************** -->
+
+
+{% extends "kiosk/kiosk.html" %}
+
+{% block grid %}
+	<link rel="stylesheet" href="/static/style_1/grid_kiosk_job_production.css?{{TCUR}}">
+	<link rel="stylesheet" href="/static/style_1/kiosk_error1.css?{{TCUR}}">
+	<script src="/static/bootstrap/js/1.11.3/jquery.min.js"></script>
+	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+	
+	{% if request.session.bounce > 0 %} 
+	<script type="text/javascript">
+	  $(document).ready(function(){
+		  $("#myModal").modal('show');
+	  });
+	</script>
+	{% endif %}
+<style>
+	{% if request.session.bounce = 1 %} 
+		.modal-body
+			{background-color: rgb(252, 236, 149);}
+		.modal-header
+		{background-color: rgb(252, 236, 149);}
+		.modal-footer
+		{background-color: rgb(252, 236, 149);}
+
+}
+	{% elif request.session.bounce = 2 %}
+		.modal-body
+			{background-color: rgb(255, 172, 172);}
+		.modal-header
+			{background-color: rgb(255, 172, 172);}
+		.modal-footer
+			{background-color: rgb(255, 172, 172);}
+			.modal {
+ 
+    border-radius: 25px; 
+}
+
+	{% endif %}
+</style>
+
+
+{% endblock %}
+
+
+{% block content %}
+
+<form action="" method="post">{% csrf_token %}
+
+
+
+<br><br>
+<center>
+<div class="grid-container">
+
+	<div class="item2">
+		<input style="background-color: #AAA00A;border-radius: 10px;width:140px;height:60px;font-weight: 700;font-size:23px;align=left;" type="submit" value="Enter">
+	</div>
+	<div class="item2"></div>
+	<div class="item2"></div>
+	<div class="item2"></div>
+	<div class="item2">
+		<button style="background-color: #AAAAAA;border-radius: 10px;width:120px;height:60px;font-weight: 700;font-size:23px;align=left;" type="submit" name="kiosk_assign_button1" value="-1">Cancel</button>
+	</div>
+	
+	
+	<div class="item2"><font color="#000000" size ="5"><u><b>Clock</b></u></font></div>
+	<div class="item2"><font color="#000000" size ="5"><u><b>Date</b></u></font></div>
+	<div class="item2"></div>
+	<div class="item2"><font color="#000000" size ="5"><u><b>Shift</b></u></font></div>
+	<div class="item2"></div>
+	
+	<div class="item2"><input style="font-size:23px;width:100px;height:60px;text-align:center;" name="clock" type="number" value={{request.session.clock}}></div>
+	<div class="item3"><input style="font-size:23px;width:200px;height:60px;text-align:center;" type="date" name="date_en" value={{Curr}}></div>
+	<div class="item2">
+		<select  style="font-size:23px;width:100px;height:60px;text-align:center;" name="shift" id="shift">
+			<option selected = "selected">{{Shift}} </option>
+			<option> Mid </option>
+			<option> Day </option>
+			<option> Aft </option>
+		</select>
+	</div>
+	<div class="item2"></div>
+	
+	<div class="item2"><font color="#000000" size ="5"><u><b>Jobs</u></b>
+<!--	{% if request.session.presscheck == 1 %}
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<u><b>PPM</u></b>
+		{% endif %}
+	-->
+		</b></u></font> 
+	</div>
+	<div class="item2"><font color="#000000" size ="5"><u><b>Part</b></u></font> </div>
+	<div class="item2"><font color="#000000" size ="5"><u><b>Production</b></u></font> </div>
+	<div class="item2"><font color="#000000" size ="5"><u><b>Hours</b></u></font> </div>
+	<div class="item2"><font color="#000000" size ="5"><u><b>Dtime (Min) </b></u></font> </div>
+
+{% if request.session.variable1 != 99 %}
+	<div class="item2"><input style="font-size:23px;width:100px;height:60px;text-align:center;" value={{request.session.variable1}}  name="job1" type="text"></div>
+
+	{% if request.session.part1 = -1 %}
+		<div class="item2">
+			<select style="font-size:18px;width:100px;height:60px;text-align:center;" name="part1" type="text"  autofocus>
+				<option selected = "selected"></option>
+				{% for k in Parts %}
+					<option>{{k.0}}</option>
+				{% endfor %}
+			</select>
+
+		</div>
+	{% else %}
+		<div class="item2">
+			<select style="font-size:16px;width:100px;height:60px;text-align:center;" name="part1" type="text">
+				<option selected = "selected">{{request.session.part1}}  </option>
+				{% for k in Parts %}
+					<option>{{k.0}}</option>
+				{% endfor %}
+			</select>
+
+		</div>
+	{% endif %}
+	{% if request.session.part1 = -1 %}
+		<div class="item2"><input style="font-size:23px;width:100px;height:60px;" value = {{request.session.oa_prod1}} name="prod1" type="number" autofocus></div>
+	{% else %}
+		<div class="item2"><input style="font-size:23px;width:100px;height:60px;" value = {{request.session.oa_prod1}} name="prod1" type="number" autofocus></div>
+	{% endif %}
+	
+	<div class="item2"> 
+		<select style="font-size:23px;width:100px;height:60px;text-align:center;" name="hrs1" type="text">
+			<option selected = "selected">{{request.session.oa_hrs1}}</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+			<option>4.5</option>
+			<option>5</option>
+			<option>5.5</option>
+			<option>6</option>
+			<option>6.5</option>
+			<option>7</option>
+			<option>7.5</option>
+			<option>8</option>
+		</select>
+	</div>
+	
+	<div class="item2"><input style="font-size:23px;width:100px;height:60px;"  value={{request.session.oa_dwn1}} name="dwn1" type="number"></div>
+{% endif %}
+
+{% if request.session.variable2 != 99 %}
+	<div class="item2"><input style="font-size:23px;width:100px;height:60px;text-align:center;" value={{request.session.variable2}}  name="job2" type="text"></div>
+
+	<!-- Safeguard test is set to -1 if no value is found -->
+	{% if request.session.part2 = -1 %}
+		<div class="item2">
+			<select style="font-size:18px;width:100px;height:60px;text-align:center;" name="part2" type="text" >
+				{% for k in Parts %}
+					<option>{{k.0}}</option>
+				{% endfor %}
+			</select>
+		</div>
+	{% else %}
+		<div class="item2">
+			<select style="font-size:16px;width:100px;height:60px;text-align:center;" name="part2" type="text">
+				<option selected = "selected">{{request.session.part2}}  </option>
+				{% for k in Parts %}
+					<option>{{k.0}}</option>
+				{% endfor %}
+			</select>
+		</div>
+	{% endif %}
+	<!--   end of safegaurd test -->
+
+	<div class="item2"><input style="font-size:23px;width:100px;height:60px;" value = {{request.session.oa_prod2}}  name="prod2" type="number"></div>
+	<div class="item2">
+		<select style="font-size:23px;width:100px;height:60px;text-align:center;"  name="hrs2" type="text">
+			<option selected = "selected">{{request.session.oa_hrs2}} </option>
+			<option>1</option>
+			<option>1.5</option>
+			<option>2</option>
+			<option>2.5</option>
+			<option>3</option>
+			<option>3.5</option>
+			<option>4</option>
+			<option>4.5</option>
+			<option>5</option>
+			<option>5.5</option>
+			<option>6</option>
+			<option>6.5</option>
+			<option>7</option>
+			<option>7.5</option>
+			<option>8</option>
+		</select>
+	</div>
+	<div class="item2"><input style="font-size:23px;width:100px;height:60px;"  value={{request.session.oa_dwn2}} name="dwn2" type="number"></div>
+{% endif %}
+
+{% if request.session.variable3 != 99 %}
+<div class="item2"><input style="font-size:23px;width:100px;height:60px;text-align:center;" value={{request.session.variable3}}  name="job3" type="text"></div>
+	<!-- Safeguard test is set to -1 if no value is found -->
+	{% if request.session.part3 = -1 %}
+		<div class="item2">
+			<select style="font-size:16px;width:100px;height:60px;text-align:center;" name="part3" type="text">
+				{% for k in Parts %}
+					<option>{{k.0}}</option>
+				{% endfor %}
+			</select>
+		</div>
+	{% else %}
+		<div class="item2">
+			<select style="font-size:16px;width:100px;height:60px;text-align:center;" name="part3" type="text">
+				<option selected = "selected">{{request.session.part3}}  </option>
+				{% for k in Parts %}
+					<option>{{k.0}}</option>
+				{% endfor %}
+			</select>
+		</div>
+	{% endif %}
+	<!--   end of safegaurd test -->
+<div class="item2"><input style="font-size:23px;width:100px;height:60px;"  value = {{request.session.oa_prod3}}  name="prod3" type="number" autofocus></div>
+<div class="item2">
+		<select style="font-size:23px;width:100px;height:60px;text-align:center;" name="hrs3" type="text">
+			<option selected = "selected"> {{request.session.oa_hrs3}} </option>
+			<option>1</option>
+			<option>1.5</option>
+			<option>2</option>
+			<option>2.5</option>
+			<option>3</option>
+			<option>3.5</option>
+			<option>4</option>
+			<option>4.5</option>
+			<option>5</option>
+			<option>5.5</option>
+			<option>6</option>
+			<option>6.5</option>
+			<option>7</option>
+			<option>7.5</option>
+			<option>8</option>
+		</select>
+</div>
+<div class="item2"><input style="font-size:23px;width:100px;height:60px;"   value={{request.session.oa_dwn3}} name="dwn3" type="number"></div>
+{% endif %}
+
+{% if request.session.variable4 != 99 %}
+	<div class="item2"><input style="font-size:23px;width:100px;height:60px;text-align:center;" value={{request.session.variable4}}  name="job4" type="text"></div>
+
+	{% if request.session.part4 = -1 %}
+		<div class="item2">
+			<select style="font-size:18px;width:100px;height:60px;text-align:center;" name="part4" type="text"  autofocus>
+				<option selected = "selected"></option>
+				{% for k in Parts %}
+					<option>{{k.0}}</option>
+				{% endfor %}
+			</select>
+		</div>
+	{% else %}
+		<div class="item2">
+			<select style="font-size:16px;width:100px;height:60px;text-align:center;" name="part4" type="text">
+				<option selected = "selected">{{request.session.part4}}  </option>
+				{% for k in Parts %}
+					<option>{{k.0}}</option>
+				{% endfor %}
+			</select>
+		</div>
+	{% endif %}
+	{% if request.session.part4 = -1 %}
+		<div class="item2"><input style="font-size:23px;width:100px;height:60px;"  value = {{request.session.oa_prod4}}  name="prod4" type="number" autofocus></div>
+	{% else %}
+		<div class="item2"><input style="font-size:23px;width:100px;height:60px;"  value = {{request.session.oa_prod4}}  name="prod4" type="number" autofocus></div>
+	{% endif %}
+	
+	<div class="item2">
+		<select style="font-size:23px;width:100px;height:60px;text-align:center;"  name="hrs4" type="text">
+			<option selected = "selected"> {{request.session.oa_hrs4}}</option>
+			<option>1</option>
+			<option>1.5</option>
+			<option>2</option>
+			<option>2.5</option>
+			<option>3</option>
+			<option>3.5</option>
+			<option>4</option>
+			<option>4.5</option>
+			<option>5</option>
+			<option>5.5</option>
+			<option>6</option>
+			<option>6.5</option>
+			<option>7</option>
+			<option>7.5</option>
+			<option>8</option>
+		</select>
+	</div>
+	
+	<div class="item2"><input style="font-size:23px;width:100px;height:60px;"   value={{request.session.oa_dwn4}} name="dwn4" type="number"></div>
+{% endif %}
+
+{% if request.session.variable5 != 99 %}
+	<div class="item2"><input style="font-size:23px;width:100px;height:60px;text-align:center;" value={{request.session.variable5}}  name="job5" type="text"></div>
+
+	{% if request.session.part5 = -1 %}
+		<div class="item2">
+			<select style="font-size:18px;width:100px;height:60px;text-align:center;" name="part5" type="text"  autofocus>
+				<option selected = "selected"></option>
+				{% for k in Parts %}
+					<option>{{k.0}}</option>
+				{% endfor %}
+			</select>
+		</div>
+	{% else %}
+		<div class="item2">
+			<select style="font-size:16px;width:100px;height:60px;text-align:center;" name="part5" type="text">
+				<option selected = "selected">{{request.session.part5}}  </option>
+				{% for k in Parts %}
+					<option>{{k.0}}</option>
+				{% endfor %}
+			</select>
+		</div>
+	{% endif %}
+	{% if request.session.part5 = -1 %}
+		<div class="item2"><input style="font-size:23px;width:100px;height:60px;"  value = {{request.session.oa_prod5}} name="prod5" type="number" autofocus></div>
+	{% else %}
+		<div class="item2"><input style="font-size:23px;width:100px;height:60px;"  value = {{request.session.oa_prod5}} name="prod5" type="number" autofocus></div>
+	{% endif %}
+	
+	<div class="item2">
+		<select style="font-size:23px;width:100px;height:60px;text-align:center;" name="hrs5" type="text">
+			<option selected = "selected">{{request.session.oa_hrs5}}</option>
+			<option>1</option>
+			<option>1.5</option>
+			<option>2</option>
+			<option>2.5</option>
+			<option>3</option>
+			<option>3.5</option>
+			<option>4</option>
+			<option>4.5</option>
+			<option>5</option>
+			<option>5.5</option>
+			<option>6</option>
+			<option>6.5</option>
+			<option>7</option>
+			<option>7.5</option>
+			<option>8</option>
+		</select>
+	</div>
+	
+	<div class="item2"><input style="font-size:23px;width:100px;height:60px;"   value={{request.session.oa_dwn5}} name="dwn5" type="number"></div>
+{% endif %}
+
+{% if request.session.variable6 != 99 %}
+	<div class="item2"><input style="font-size:23px;width:100px;height:60px;text-align:center;" value={{request.session.variable6}}  name="job6" type="text"></div>
+
+	{% if request.session.part6 = -1 %}
+		<div class="item2">
+			<select style="font-size:18px;width:100px;height:60px;text-align:center;" name="part6" type="text"  autofocus>
+				<option selected = "selected"></option>
+				{% for k in Parts %}
+					<option>{{k.0}}</option>
+				{% endfor %}
+			</select>
+		</div>
+	{% else %}
+		<div class="item2">
+			<select style="font-size:16px;width:100px;height:60px;text-align:center;" name="part6" type="text">
+				<option selected = "selected">{{request.session.part6}}  </option>
+				{% for k in Parts %}
+					<option>{{k.0}}</option>
+				{% endfor %}
+			</select>
+		</div>
+	{% endif %}
+	{% if request.session.part6 = -1 %}
+		<div class="item2"><input style="font-size:23px;width:100px;height:60px;"  value = {{request.session.oa_prod6}} name="prod6" type="number" autofocus></div>
+	{% else %}
+		<div class="item2"><input style="font-size:23px;width:100px;height:60px;"  value = {{request.session.oa_prod6}} name="prod6" type="number" autofocus></div>
+	{% endif %}
+	
+	<div class="item2">
+		<select style="font-size:23px;width:100px;height:60px;text-align:center;" name="hrs6" type="text">
+			<option selected = "selected">{{request.session.oa_hrs6}} </option>
+			<option>1</option>
+			<option>1.5</option>
+			<option>2</option>
+			<option>2.5</option>
+			<option>3</option>
+			<option>3.5</option>
+			<option>4</option>
+			<option>4.5</option>
+			<option>5</option>
+			<option>5.5</option>
+			<option>6</option>
+			<option>6.5</option>
+			<option>7</option>
+			<option>7.5</option>
+			<option>8</option>
+		</select>
+	</div>
+	
+	<div class="item2"><input style="font-size:23px;width:100px;height:60px;"   value={{request.session.oa_dwn6}} name="dwn6" type="number"></div>
+{% endif %}
+
+</div>
+</form>
+
+
+          <!-- Modal -->
+		  <div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog modal-lg">
+			  <div class="modal-content" >
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal">&times;</button>
+				  <h4 class="modal-title"><mark><font color="#000000" size ="6">&nbsp;&nbsp;{{request.session.error_title}}&nbsp;&nbsp;</font></mark></h4>
+				</div>
+				<div class="modal-body" >
+				  <font color="#000000" size ="5">
+					  <p align="left">
+						  <b><u>{{request.session.error_message}}</u></b><br><br>
+				{% for a in oa_problem %}
+				{{a}}<br>
+				{% endfor %}
+				<!-- {{oa_problem}} -->
+				</p>
+				  </font>
+				</div>
+				<div class="modal-footer">
+				  <img src="/static/media/JELogo.gif?{{TCUR}}"  style="border-radius: 25px;" height="40" width="150">
+					  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					
+							<button type ="button" class="close" data-dismiss="modal">OK</button>
+				</div>
+			  </div>
+			</div>
+		  </div>
+
+{% endblock %}

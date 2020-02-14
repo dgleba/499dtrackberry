@@ -1,0 +1,14 @@
+<html>
+
+<!-- Redirect page back to url call of '/trakberry/test' going to display view and back to this page  -->
+<!-- Do this to update time and information from database reads  -->
+
+<font size="3" color="black">
+
+{% for i in List %}
+Machine: {{ i.0}}  Part: {{i.2}}  Production: {{ i.1}}  Time:{{i.3}} <br>
+{% endfor %}
+<br><br>
+
+</font>
+</body></html>

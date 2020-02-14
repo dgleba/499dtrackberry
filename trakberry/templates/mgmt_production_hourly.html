@@ -1,0 +1,128 @@
+{% extends "mgmt.html" %}
+<!-- mgmt_login_form.html -->
+{% block content %}
+<style>
+        table {
+          border-collapse: collapse;
+          border-spacing: 0;
+          width: 99%;
+          border: 1px solid #ddd;
+        }
+        
+        th, td {
+          text-align: left;
+          padding: 7px;
+        }
+        tr:nth-child(odd){background-color: #c7c9ad}
+        tr:nth-child(even){background-color: #ebeace}
+
+        a.blue:link {color: black;}
+        a.blue:active {color: black;}
+        a.blue:visited {color: black;}
+        a.blue:hover {color: black;background-color: rgb(255, 223, 78);border-radius: 10px;}
+
+</style>
+
+<center>
+<table style="overflow-x:auto;">
+<tr>
+    <td nowrap>
+            <font size ="2" style="color:rgb(100, 100, 100)">
+                <b>ID    
+            </font>
+    </td>
+    <td nowrap>
+            <font size ="2" style="color:rgb(100, 100, 100)">
+                    <b> Cell    
+            </font>
+    </td>
+    <td nowrap>
+            <font size ="2" style="color:rgb(100, 100, 100)">
+                    <b> Operator    
+            </font>
+    </td>
+    <td nowrap>
+            <font size ="2" style="color:rgb(100, 100, 100)">
+                    <b>Part    
+            </font>
+    </td>
+    <td nowrap>
+            <font size ="2" style="color:rgb(100, 100, 100)">
+                    <b>Date    
+            </font>
+    </td>
+    <td nowrap>
+            <font size ="2" style="color:rgb(100, 100, 100)">
+                    <b> Shift    
+            </font>
+    </td>
+    <td nowrap>
+            <font size ="2" style="color:rgb(100, 100, 100)">
+                    <b> Hour    
+            </font>
+    </td>
+    <td nowrap>
+            <font size ="2" style="color:rgb(100, 100, 100)">
+                    <b> Target    
+            </font>
+    </td>
+    <td nowrap>
+            <font size ="2" style="color:rgb(100, 100, 100)">
+                    <b>Actual    
+            </font>
+    </td>
+    <td nowrap>
+            <font size ="2" style="color:rgb(100, 100, 100)">
+                    <b>Shift Target    
+            </font>
+    </td>
+    <td nowrap>
+            <font size ="2" style="color:rgb(100, 100, 100)">
+                    <b>Shift Actual    
+            </font>
+    </td>
+    <td nowrap>
+            <font size ="2" style="color:rgb(100, 100, 100)">
+                    <b>DT Code    
+            </font>
+    </td>
+    <td nowrap>
+            <font size ="2" style="color:rgb(100, 100, 100)">
+                    <b>DT Mins    
+            </font>
+    </td>
+    <td nowrap>
+            <font size ="2" style="color:rgb(100, 100, 100)">
+                    <b> DT Reason    
+            </font>
+    </td>
+    <td nowrap>
+            <font size ="2" style="color:rgb(100, 100, 100)">
+                    <b>Created    
+            </font>
+    </td>
+    <td nowrap>
+            <font size ="2" style="color:rgb(100, 100, 100)">
+                    <b> Updated    
+            </font>
+    </td>
+</tr>
+{% for i in tmp%}
+    <tr>
+    {% for ii in i%}
+        <td nowrap><font size ="2" style="color:rgb(100, 100, 100)">
+                <a href="{{request.session.local_toggle}}/mgmt_production_hourly_edit/get/{{ i.0 }}" class="blue">
+                        {{ii}}
+                </a></td>
+    {% endfor %}
+    </tr>
+{% endfor %}
+
+</table>
+</center>
+
+{% endblock %}
+
+
+
+

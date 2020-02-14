@@ -1,0 +1,222 @@
+
+{% extends "main.html" %}
+
+{% block refresh %}
+{% if request.session.details_track = 0 %}
+	<meta http-equiv="refresh" content="15; url=/trakberry/display" />
+{% endif %}	
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+google.load('visualization', '1', {
+    packages: ['corechart', 'line']
+});
+google.setOnLoadCallback(drawCurveTypes);
+
+function drawCurveTypes() {
+
+	var obj = [
+			{% for item in List %}
+            [new Date({{item.0}}*1000),{{item.1}},{{item.2}},{{item.3}}],
+            {% endfor %}
+        ];
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('datetime', 'Date');
+    data.addColumn('number', 'Production');
+    data.addColumn('number', 'Target');
+	data.addColumn('number', '85% Target');
+	data.addRows(obj)
+
+ 
+    var options = {
+		title: "Shift Production Chart For {{request.session.machine_chart}}",
+		chartArea: {
+			backgroundColor: {
+				stroke: '#4322c0',
+				strokeWidth: 3
+			}
+		},
+		//backgroundColor: '#F5EBE1',
+        hAxis: {
+            title: 'Time',
+			format: "HH:mm",
+			gridlines: { count: 20 }
+			
+        },
+		
+        vAxis: {
+            title: 'Quantity',
+			gridlines: { count: 15 }
+        },
+        series: {
+            1: {
+                curveType: 'function'
+            }
+        }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+}
+    </script>
+	
+{% endblock %}
+
+				{%block active_1%}
+                <li><a href="/trakberry/main"><span class="glyphicon glyphicon-globe"></span> Main</a></li>
+				{% endblock%}
+				{%block active_2%}
+				<li class="active"><a href="/trakberry/display"><span class="glyphicon glyphicon-eye-open"></span> Live Track</a></li>
+				{%endblock%}
+				
+{% block content %}
+	
+<div class="container">
+
+    <div class="row">
+		<div class="col-sm-10">
+        <center><font color="black" style="z-index: 9999;"><h2><b><u>Production Tracking</u></b></h2> 
+		{% if request.session.details_track = 0 %}
+			<a href="/trakberry/details_track/">Pause</a></font>
+		{% else %}
+			<a href="/trakberry/details_track/">Resume</a></font>
+		{% endif %}	
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-2"></div>
+		<div class="col-sm-2">
+        <font color="black" style="z-index: 9999;"><h4><i><u>GF6 Input OP30</u></i></font>
+		</div>
+		<div class="col-sm-2">
+        <font color="black" style="z-index: 9999;"><h5>Total : {{ Total}}</h5></u></i></font>
+		</div>
+		
+    </div>
+
+
+    <div class="row">
+		{% if Diff.0 < Yellow.0 %}
+        <div class="col-sm-3" style="background-color: #88F797;border-style: solid; border-width: 1px;border-color: #000000;"><p>
+		{% elif Diff.0 < Red.0 %}
+		<div class="col-sm-3" style="background-color: #FAF6C3;border-style: solid;border-width: 1px;border-color: #000000;"><p>
+		{% else %}
+		<div class="col-sm-3" style="background-color: #FC8DA0;border-style: solid ;border-width: 1px;border-color: #000000;"><p>
+		{% endif %}
+				<div id="page-wrap">
+                <font color="black" style="z-index: 9999;"><p><b>
+				<a href="#" title=OEE:{{OEE.0}}>677</a></b>
+                
+                </p>
+				
+			</font>
+				</div>
+        </div>
+	
+		{% if Diff.1 < Yellow.1 %}
+        <div class="col-sm-3" style="background-color: #88F797;border-style: solid; border-width: 1px;border-color: #000000;"><p>
+		{% elif Diff.1 < Red.1 %}
+		<div class="col-sm-3" style="background-color: #FAF6C3;border-style: solid;border-width: 1px;border-color: #000000;"><p>
+		{% else %}
+		<div class="col-sm-3" style="background-color: #FC8DA0;border-style: solid ;border-width: 1px;border-color: #000000;"><p>
+		{% endif %}
+                <font color="black" style="z-index: 9999;"><p>
+                <b><a href="/trakberry/graph748/" style="color:#000000">748</a></b>:({{Part.1}}) -
+                {{ Count.1 }} parts /
+                Idle : {{ Diff_time.1 }}</p>
+				{% if request.session.details_gf6op30 = 1 %}				
+				<p>Last Cycle : {{ Cycle.1}}sec<br>
+				<p>OEE : {{ OEE.1}}%<br>
+				Hourly Rate : {{ Hrate.1}} parts<br>
+				Shift Downtime : {{ Downtime.1}} <br>
+				Shift Projection : {{ Projection.1}} parts</p>
+				{% endif %}
+				</font>
+        </div>
+
+		{% if Diff.2 < Yellow.2 %}
+        <div class="col-sm-3" style="background-color: #88F797;border-style: solid; border-width: 1px;border-color: #000000;"><p>
+		{% elif Diff.2 < Red.2 %}
+		<div class="col-sm-3" style="background-color: #FAF6C3;border-style: solid;border-width: 1px;border-color: #000000;"><p>
+		{% else %}
+		<div class="col-sm-3" style="background-color: #FC8DA0;border-style: solid ;border-width: 1px;border-color: #000000;"><p>
+		{% endif %}
+                <font color="black" style="z-index: 9999;"><p>
+                <b><a href="/trakberry/graph749/" style="color:#000000"> 749</a></b>:({{Part.2}}) -
+               {{ Count.2 }} parts /
+                Idle : {{ Diff_time.2 }}
+				</p>
+				{% if request.session.details_gf6op30 = 1 %}
+				<p>Last Cycle : {{ Cycle.2}}sec<br>
+				<p>OEE : {{ OEE.2}}%<br>
+				Hourly Rate : {{ Hrate.2}} parts<br>
+				Shift Downtime : {{ Downtime.2}} <br>
+				Shift Projection : {{ Projection.2}} parts</p>
+				{% endif %}
+				</font>
+        </div>
+		
+		{% if Diff.3 < Yellow.3 %}
+        <div class="col-sm-3" style="background-color: #88F797;border-style: solid; border-width: 1px;border-color: #000000;"><p>
+		{% elif Diff.3 < Red.3 %}
+		<div class="col-sm-3" style="background-color: #FAF6C3;border-style: solid;border-width: 1px;border-color: #000000;"><p>
+		{% else %}
+		<div class="col-sm-3" style="background-color: #FC8DA0;border-style: solid ;border-width: 1px;border-color: #000000;"><p>
+		{% endif %}
+                <font color="black" style="z-index: 9999;"><p>
+                <b><a href="/trakberry/graph750/" style="color:#000000">750</a></b>:({{Part.3}}) -
+                {{ Count.3 }} parts /
+                Idle : {{ Diff_time.3 }}
+				</p>
+				{% if request.session.details_gf6op30 = 1 %}
+				<p>Last Cycle     : {{ Cycle.3}}sec<br>
+				<p>OEE : {{ OEE.3}}%<br>
+				Hourly Rate    : {{ Hrate.3}} parts<br>
+				Shift Downtime : {{ Downtime.3}} <br>
+				Shift Projection : {{ Projection.3}} parts</p>
+				{% endif %}
+				</font>
+        </div>
+    </div>
+	<div class="row">
+		<div class="col-sm-2">
+			{% if request.session.details_gf6op30 = 0 %}
+				<a href="/trakberry/details_session/">(+)More Details</a>
+			{% else %}
+				<a href="/trakberry/details_session/">(-)Less Details</a>
+			{% endif %}	
+		</div>	
+		<div class="col-sm-2"></div>
+		<div class="col-sm-1"></div>
+		<div class="col-sm-5">
+			{% block editpart %}
+			<a href="/trakberry/edit/"><img src="/media/edit.png"  height="17" width="17"> Edit Part Number</a>
+			{% endblock %}
+		</div>
+		<div class="col-sm-2"></div>
+		
+	</div>	
+	
+	
+	
+	{% if request.session.machine_chart == "nope" %}
+    <div class="row">
+		<div class="col-sm-10">
+			
+		
+		</div>
+	</div>	
+	{% else %}
+	<br><br>
+    <div class="row">
+		<div class="col-sm-8"><center>
+			<div id="chart_div" style="width: 100%; height: 600px"></div>
+		
+		</div>
+	</div>		
+	{% endif %}
+	
+</div>
+
+{% endblock %}	

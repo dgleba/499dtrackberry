@@ -1,0 +1,22 @@
+Trakberry Updates (May 26,2015)
+-------------------------------
+
+Created 'trial1.py' on Pi. Must be run in root and will handle inputs from both GPIO14 and GPIO15.  GPIO 15 
+    terminates the program.  GPIO14 takes a button push and writes the machine number '662' and the 
+    Unix time to a prodrptdbtest database table  'Trial_1'
+    Button presses less than 3 seconds apart will not be written to the database.
+    
+Changed 'urls.py' to direct the call 'test' to the module 'display' in Views 
+ 
+Created the module 'display' in views.  This module takes an http request only.  It will open
+    the 'prodrptdbtest' database and access table 'Trial_1'   It will retrieve the counts and latest time
+    entered. It calculates how long it has been since the last part was run and sends this information to
+    the template ' display.html'
+    
+Created template 'display.html'. This template will display the current production volume along with 
+      the time since the last part has been run.  It will display it graphiclly and it will redirect every 2
+      seconds back to the module 'display' so updated information can be obtained and then it is redirected
+      back to the graphical interface.
+      
+      
+    

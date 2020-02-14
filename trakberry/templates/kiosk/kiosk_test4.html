@@ -1,0 +1,47 @@
+
+<html>
+        <head>
+        <!-- Test  -->
+         <!-- Format for Background image -->
+        <style type="text/css">
+
+
+#full-screen-background-image {z-index: -999;min-height: 110%; min-width: 100%;width: 100%;height: 110%;position: fixed;top: ;  left: 0;}
+</style>
+</head>       
+
+
+<body>
+<img alt="full screen background image" src="/static/media/white_back.jpeg?{{TCUR}}" id="full-screen-background-image"/>
+
+
+
+<br><br><br>
+
+
+<br><br>
+
+
+<center>
+<table>
+    <tr>
+{% for i in tmpp %}
+
+    <td style="background-image: linear-gradient({{i.20}});border-radius: 10px;width:290px;height:110px;font-weight: 700;font-size:18px;box-shadow: 5px 10px #686868;">
+        <center>{{i.1}} &nbsp;&nbsp; {{i.16}}%</center>   
+    <br><br>
+    <center>Last Hour: &nbsp;&nbsp; {{i.18}}%  </center> 
+    </td>
+{% if i.21 = 0 %}
+</tr><tr><td style="border-radius: 10px;width:200px;height:50px;font-weight: 700;font-size:18px;align=left;"></td></tr><tr>
+{% else %}
+<td style="border-radius: 10px;width:200px;height:50px;font-weight: 700;font-size:18px;align=left;"></td>
+
+    {% endif %}
+    {% endfor %}
+</tr>
+</table>
+</center>
+<br><br><br>
+
+</body></html>

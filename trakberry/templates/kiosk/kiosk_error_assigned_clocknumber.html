@@ -1,0 +1,53 @@
+
+<!-- ********************************** -->
+<!-- ****   Kiosk_error_badjobnumber.html   *** -->
+<!-- ********************************** -->
+
+
+{% extends "kiosk/kiosk.html" %}
+{% block content %}
+
+<br><br><br><br>
+<center>
+<table style="width:30%;">
+
+<tr valign="middle"><th style="padding:20px;opacity: 0.75;filter:alpha(opacity=75);border-radius: 30px;" bgcolor="#DCDCDC" >
+	
+<center>
+<font color="#000000" size ="5"><u>Error!</u> <br>
+This Clock Number is on a Job Already.   Leave Job then Assign again.  <br><br> <br><br>
+
+
+
+<a href="{{request.session.local_toggle}}/kiosk">
+<button style="background-color: #DE8F7E;border-radius: 10px;width:180px;height:60px;font-weight: 700;font-size:23px;align=left;"><center><font color="#000000"><< Go Back</font></center></button>
+</a>
+<br><br><br><br>
+Jobs Assigned <br><br>
+
+{% if request.session.variable1 != 99 %}
+{{request.session.variable1}} <br>
+{% endif %}
+
+{% if request.session.variable2 != 99 %}
+{{request.session.variable2}} <br>
+{% endif %}
+
+{% if request.session.variable3 != 99 %}
+{{request.session.variable3}} <br>
+{% endif %}
+
+{% if request.session.variable4 != 99 %}
+{{request.session.variable4}} <br>
+{% endif %}
+
+{% if request.session.variable5 != 99 %}
+
+{{request.session.variable5}} <br>
+{% endif %}
+
+{% if request.session.variable6 != 99 %}
+{{request.session.variable6}} <br>
+{% endif %}
+
+{% endblock %}

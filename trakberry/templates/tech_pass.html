@@ -1,0 +1,35 @@
+{% extends "tech.html" %}
+{% block refresh %}
+{% endblock %}
+{% block close %}
+
+
+
+<form action="" method="post">{% csrf_token %}
+<div class="container"><br><br><br>
+    <div class="row">
+		<div class="col-sm-1"></div>
+		<div class="col-sm-5"><b><u>Comment</b></u>&nbsp;
+		<input type="textarea" name="comment" style="color:blue;">
+		</div>
+		
+		
+		<div class="col-sm-4">
+			<b><u>Dept</b></u>&nbsp;
+			<select name ="pass" style="color:blue;">
+			<option value="Electrician">Electrician</option>
+			<option value="Millwright">Millwright</option>
+			<option value="Fluid Tech">Fluid Tech</option>
+			<option value="Engineering">Engineering</option>
+			<option value="Contractor">Contractor</option></select>
+		</div>
+		<div class="col-sm-2">
+			<!-- <input type="submit"> -->
+			<input style="color:blue; text-align: left;width:80px;height:30px;font-size: 18px;border-style: solid;border-color:#A1A1A1;border-radius: 10px;" type="submit" value="Enter">
+		</div>
+	</div>
+</div>
+
+</form>
+
+{% endblock %}

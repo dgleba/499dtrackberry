@@ -1,0 +1,74 @@
+{% extends "tech.html" %}
+{% block refresh %}
+{% endblock %}
+
+
+
+{% block close %}
+
+<!--
+<form action="" method="post">{% csrf_token %}
+
+<div class="form-inline"><br>
+	<div class="form-group">
+		<label for="user">User</label>
+		<input class="form-control input-lg" name="user" type="text">
+	</div>	
+	<div class="form-group">
+		<label for="pwd">Password</label>
+		<input class="form-control input-lg" name="pwd" type="password">
+	</div>	
+	<div class="form-group">
+		<input type="submit" value="Submit">
+	</div>		
+</div>
+
+</form>
+-->
+
+
+<font color="#000000" size ="3">
+
+<div class="container"><br><br><br>
+    <div class="row">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-6">
+<form action="" method="post">{% csrf_token %}
+<table>
+
+<b><u>Tech Name</b></u>&nbsp;
+<select name ="user">
+	<option value="Derek Peachey">Derek Peachey</option>
+	<option value="Ervin Kuepfer">Ervin Kuepfer</option>
+	<option value="Greg Hundt">Greg Hundt</option>
+	<option value="Jered Pankratz">Jered Pankratz</option>
+	<option value="Jim Barker">Jim Barker</option>
+	<option value="Dave McLaren">Dave McLaren</option>
+	<option value="Kyle Scheuerman">Kyle Scheuerman</option>
+	<option value="Les Vaters">Les Vaters</option>
+	<option value="Mayank Gehlot">Mayank Gehlot</option>
+	<option value="Muoi Le">Muoi Le</option>
+	<option value="Paul Wilson">Paul Wilson</option>
+	<option value="Phuc Bui">Phuc Bui</option>
+	<option value="Rob Wood">Rob Wood</option>
+	<option value="Scott Smith">Scott Smith</option>
+	<option value="Terry Kennedy">Terry Kennedy</option>
+	<option value="Toby Kuepfer">Toby Kuepfer</option>
+	<option value="Woodrow Sismar">Woodrow Sismar</option>	
+</select>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<input type="submit">
+
+
+
+</table>
+</form>
+</div>
+<div class="col-sm-2"></div>
+	</div>	
+</div>
+</font>
+
+
+{% endblock %}

@@ -1,0 +1,42 @@
+<html>
+<head>
+
+
+
+<script>
+$scope.gotoElement = function(eID) {
+    // call $anchorScroll()
+    $scope.smoothScrollTo(eID).then(function() {
+        clickElement('#textarea');
+    });          
+}
+
+function clickElement(e) {
+  $(e).on('touchstart', function() {
+    //$(e).val('touchstart');
+    $(e).focus();
+  });
+
+  $(e).trigger('touchstart');
+}
+</script>
+
+</head>
+<body>
+
+<form action="" method="post">{% csrf_token %}
+
+
+
+<input style="font-size:23px;width:100px;height:60px;"  name="var1" autofocus />
+
+	
+</form>
+
+
+
+
+
+
+</body>
+</html>

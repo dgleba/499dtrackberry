@@ -1,0 +1,40 @@
+{% extends "gf6input.html" %}
+
+
+				
+{% block content %}
+
+			
+				
+<div class="container"><br><br><br>
+    <div class="row">
+		<div class="col-sm-8">
+		<center><font color="black" style="z-index: 9999;"><h2><b><u>Daily Production Report</u></b></h2> </font></center><br>
+<form action="" method="post">{% csrf_token %}
+<!-- Style my form to [form_css]  -->
+
+<table><tr><td>
+<b><u>Date</b></u></td><td>
+<input type="date" name="start_date"></td></tr>
+
+<tr><td>
+  <input style="background-color: #999999;border-radius: 10px;width:90px;height:30px;" type="submit"></td></tr>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</table>
+
+
+
+</form>
+		  </div>
+
+		</div>
+	</div>	
+</div>	
+<!--
+<script type="text/javascript">
+alert("Do Not Use Internet Explorer or the Date DropDown won't work.  Use Chrome or Firefox !");
+</script>
+-->
+
+{% endblock %}	

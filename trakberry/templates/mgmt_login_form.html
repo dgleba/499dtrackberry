@@ -1,0 +1,53 @@
+{% extends "mgmt.html" %}
+<!-- mgmt_login_form.html -->
+{% block content %}
+<div class="container"><br><br><br>
+    <div class="row">
+		<div class="col-sm-8">
+			
+<form action="" method="post">{% csrf_token %}
+<!-- Style my form to [form_css]  -->
+<table>
+<tr><td colspan="2" style="font-size:25px;"><b><u><center>LOG IN</center></b></u></td><tr>
+<tr><td>&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td><b><u>Login Name</b></u>&nbsp;&nbsp;&nbsp;</td><td>
+
+
+<select style="font-size:14px;width:320px;height:30px;" name="login_name" >
+	<option value=" "> </option>
+<option value="Adam Trachsel">Adam Trachsel</option>
+<option value="Dave Clark">Dave Clark</option>
+<option value="Dave Milne">Dave Milne</option>
+<option value="Dean Miller">Dean Miller</option>
+<option value="Don Barber">Don Barber</option>
+<option value="Jim McMaster">Jim McMaster</option>
+
+
+
+
+
+
+</select>
+
+</td></tr>
+
+<tr><td><b><u>Password</b></u>&nbsp;&nbsp;&nbsp;</td><td><input style="font-size:14px;width:320px;height:30px;" type="password" name="login_password" value="wrrrrrrr">
+	
+		</td></tr>
+
+<tr><td>&nbsp;&nbsp;&nbsp;</td></tr>
+
+<tr><td colspan="2" ><center>
+	<input style="background-color: #999999;border-radius: 10px;height:30px;" type="submit" name="button1" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENTER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <!-- <input style="background-color: #999999;border-radius: 10px;height:25px;" type="submit" name="button2" value="&nbsp;&nbsp;&nbsp;&nbsp;Forgot Password&nbsp;&nbsp;&nbsp;&nbsp;">
+    -->
+</center></td></tr>
+
+</table>
+</form>
+		  </div>
+
+		</div>
+	</div>	
+{% endblock %}

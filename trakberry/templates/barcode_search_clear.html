@@ -1,0 +1,26 @@
+
+{% extends "kiosk/barcode_main.html" %}
+{% block content %}
+<body style="background-color:rgb(211, 211, 211);">
+
+
+<br><br><br>
+<font style="font-size: 88px; color:white; text-shadow: 1px 1px 2px black, 1px 1px 2px blue, 1px 1px 2px darkgoldenrod;">Part not found in the system
+</font>
+
+<br><br>
+<font style="font-size: 50px; color:rgb(255, 255, 255); text-shadow: 1px 1px 2px black, 1px 1px 2px blue, 1px 1px 2px darkgoldenrod;">
+Current Time:{{request.session.now_time}}
+</font> <br>
+
+<font style="font-size: 50px; color:rgb(255, 255, 255); text-shadow: 1px 1px 2px black, 1px 1px 2px blue, 1px 1px 2px darkgoldenrod;">
+    Serial Number :{{request.session.barcode}}
+    </font><br>
+
+</body>
+{% endblock %}
+
+
+
+
+

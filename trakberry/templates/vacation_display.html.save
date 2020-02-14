@@ -1,0 +1,400 @@
+
+{% extends "main.html" %}
+
+{% block styleA %}
+ 
+
+@media screen {
+    body {
+        background-color: green;
+
+    }
+    v{font-size: 100%;}
+    t{font-size: 100%;}
+    o{font-size: 100%;}
+    tt{font-size: 100%;}
+    ss{font-size: 100%;}
+    table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+	}
+
+	th, td {
+    padding: 6px;
+	}
+	.noPrint { display:initial; }
+}
+
+
+
+@media print {
+	
+	@page {size: landscape}
+	
+	
+	    table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+	}
+	th, td {
+    padding: .25px;
+	}
+	  a[href]:after {
+    content: none !important;
+  }
+    tt{font-size: 100%;}
+	v{font-size:80%;}
+    t{font-size: 50%;}
+    ss{font-size: 80%;}
+    o{font-size: 80%;}
+    
+	.noPrint { display:none; }
+}
+
+a.blue:link {color: black;}
+a.blue:active {color: black;}
+a.blue:visited {color: black;}
+a.blue:hover {color: black;}
+
+a.green:link {color: #FFFFFF;background-color: #315225;border-radius: 25px;}
+a.green:active {color: #FFFFFF;background-color: #315225;border-radius: 25px;}
+a.green:visited {color: #FFFFFF;background-color: #315225;border-radius: 25px;}
+a.green:hover {color: #FFFFFF;background-color: #315225;border-radius: 25px;}
+
+a.red:link {color: #ffffff; background-color: #145671;border-radius: 25px; font-style: normal;}
+a.red:active {color: #ffffff;background-color: #145671;border-radius: 25px; font-style: normal;}
+a.red:visited {color: #ffffff; background-color: #145671;border-radius: 25px; font-style: normal;}
+a.red:hover {color: #ffffff; background-color: #218AB5;border-radius: 25px; font-style: normal;}
+
+a.date:link {color: #ffffff; background-color: #368732; font-style: normal;}
+a.date:active {color: #ffffff;background-color: #368732; font-style: normal;}
+a.date:visited {color: #ffffff; background-color: #368732; font-style: normal;}
+a.date:hover {color: #ffffff; background-color: #9AEB96; font-style: normal;}
+
+
+
+{% endblock %}
+
+{% block refresh %}
+{% if request.session.details_track = 0 %}
+
+{% endif %}	
+
+	
+{% endblock %}
+
+
+
+
+{% block content %}
+<!-- Load Bootstrap toggle button -->
+<!--
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+-->
+
+<link href="/static/bootstrap/css/bootstrap-toggle/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="/static/bootstrap/css/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+
+
+
+<script>$('#toggle-demo').bootstrapToggle('off')</script>
+
+<div class="noPrint">
+	<br>
+</div>
+<center><font size="6">
+<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vacations&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></font>
+</center>
+<!--
+<div class="noPrint">
+
+	<button style="margin-left:10%;" onclick="myFunction()"><b>Print</b></button>
+	
+-->
+<div class="noPrint">
+	<form action="" method="post">{% csrf_token %}
+
+	
+	
+<!--	
+<select style="font-size:14px;width:320px;height:30px;" name="login_name" >
+
+	<select onchange="this.form.submit()" style="font-size:14px;width:110px;height:20px;" name="shift" >
+<option value="All">All</option>
+<option value="CSD1 Day">CSD1 Day</option>
+<option value="CSD1 Aft">CSD1 Aft</option>
+<option value="CSD1 Mid">CSD1 Mid</option>
+<option value="CSD2 Day">CSD2 Day</option>
+<option value="CSD2 Aft">CSD2 Aft</option>
+<option value="CSD2 Mid">CSD2 Mid</option>
+<option value="Cont A Nights">Cont A Nights</option>
+<option value="Cont A Days">Cont A Days</option>
+<option value="Cont B Nights">Cont B Nights</option>
+<option value="Cont B Days">Cont B Days</option>
+<option value="Maintenance">Maintenance</option>
+<option value="Forklift">Forklift</option>
+<option value="Press Setter">Press Setter</option>
+<option selected="selected">
+{{request.session.shift}}
+</option>
+</select>
+
+	<font style="margin-left:14%;font-size:100%;">
+	-->
+<center>
+
+<input {{request.session.sfilter1}} data-toggle="toggle" data-on="CSD2 Days" data-off="CSD2 Days" data-onstyle="primary"  type="checkbox" data-size="mini" 
+data-width="100" name="shift1">
+
+
+
+
+
+<input {{request.session.sfilter2}} data-toggle="toggle" data-on="CSD2 Aft" data-off="CSD2 Aft"data-onstyle="primary" type="checkbox" data-size="mini" 
+data-width="100" name="shift2">
+<input {{request.session.sfilter3}} data-toggle="toggle" data-on="CSD2 Mid" data-off="CSD2 Mid" data-onstyle="primary" type="checkbox" data-size="mini" 
+data-width="100" name="shift3">
+<input {{request.session.sfilter8}} data-toggle="toggle" data-on="Forklift" data-off="Forklift" data-onstyle="primary" type="checkbox" data-size="mini" 
+data-width="100" name="shift8">
+<input {{request.session.sfilter9}} data-toggle="toggle" data-on="Maintenance" data-off="Maintenance" data-onstyle="primary" type="checkbox" data-size="mini" 
+data-width="100" name="shift9">
+
+<br>
+
+<input {{request.session.sfilter4}} data-toggle="toggle" data-on="ContA Night" data-off="ContA Night" data-onstyle="primary" type="checkbox" data-size="mini" 
+data-width="100" name="shift4">
+<input {{request.session.sfilter5}} data-toggle="toggle" data-on="ContA Days" data-off="ContA Days" data-onstyle="primary" type="checkbox" data-size="mini" 
+data-width="100" name="shift5">
+<input {{request.session.sfilter6}} data-toggle="toggle" data-on="ContB Night" data-off="ContB Night" data-onstyle="primary" type="checkbox" data-size="mini" 
+data-width="100" name="shift6">
+<input {{request.session.sfilter7}} data-toggle="toggle" data-on="ContB Days" data-off="ContB Days" data-onstyle="primary" type="checkbox" data-size="mini" 
+data-width="100" name="shift7">
+<input {{request.session.sfilter10}} data-toggle="toggle" data-on="Press Setter" data-off="Press Setter" data-onstyle="primary" type="checkbox" data-size="mini" 
+data-width="100" name="shift10">
+
+<br>
+<input {{request.session.sfilter11}} data-toggle="toggle" data-on="CSD1 Days" data-off="CSD1 Days" data-onstyle="primary" type="checkbox" data-size="mini" 
+data-width="100" name="shift11">
+<input {{request.session.sfilter12}} data-toggle="toggle" data-on="CSD1 Aft" data-off="CSD1 Aft" data-onstyle="primary" type="checkbox" data-size="mini" 
+data-width="100" name="shift12">
+<input {{request.session.sfilter13}} data-toggle="toggle" data-on="CSD1 Mid" data-off="CSD1 Mid" data-onstyle="primary" type="checkbox" data-size="mini" 
+data-width="100" name="shift13">
+<input {{request.session.sfilter14}} data-toggle="toggle" data-on="ToolRoom" data-off="ToolRoom" data-onstyle="primary" type="checkbox" data-size="mini" 
+data-width="100" name="shift14">
+<!--   Sample for backup  
+<input {{request.session.sfilter10}} data-toggle="toggle" data-on="Press Setter" data-off="Press Setter" data-onstyle="success" data-offstyle="danger" type="checkbox" data-size="mini" 
+data-width="100" name="shift10">
+-->
+
+<br>
+
+<input style="background-color: #2A93BD;border-radius: 10px;width:205px;height:25px;font-weight: 600;" type="submit" value="FILTER">
+
+</center>	
+
+
+<!--  
+</form>
+-->
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<font style="margin-left:7%;font-size:100%;">
+
+<a href="/trakberry/employee_vacation_enter_init2" class="red"> &nbsp;&nbsp;&nbsp; <b>New Entry</b> &nbsp;&nbsp;&nbsp;</a>
+</font>
+<font style="margin-left:55%;font-size:100%;">
+<button onclick="myFunction()"><b>&nbsp;&nbsp;&nbsp;Print&nbsp;&nbsp;&nbsp;</b></button>
+
+</font>
+<br>
+
+
+<t><font style="margin-left:37%;"><b>{{S}}</b></font></t>
+
+
+
+
+</div>
+
+<table style="width:80%;margin-left:10%;">
+<tr><th bgcolor="#CCDDE3" style="font-size: 130%;" colspan="7">
+<center>
+	{% if Mnth = 'January' and Year = 2016 %}
+	<font style="font-size:55%;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </font>
+	{% else %}
+	<div class="noPrint">
+		<a href="/trakberry/vacation_display_decrement" style="color: black">
+		<img src="/static/media/left.png"  height="30" width="30"></a>
+	</div>	
+	{% endif %}
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<t>
+		
+<select onchange="this.form.submit()"  name="month">
+<option value=1>January&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2016</option>
+<option value=2>February&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2016</option>
+<option value=3>March&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2016</option>
+<option value=4>April&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2016</option>
+<option value=5>May&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2016</option>
+<option value=6>June&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2016</option>
+<option value=7>July&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2016</option>
+<option value=8>August &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2016</option>
+<option value=9>September&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2016</option>
+<option value=10>October&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2016</option>
+<option value=11>November &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2016</option>
+<option value=12>December&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2016</option>
+<option value=13>January&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2017</option>
+<option value=14>February&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2017</option>
+<option value=15>March&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2017</option>
+<option value=16>April &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2017</option>
+<option value=17>May&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  2017</option>
+<option value=18>June &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2017</option>
+<option value=19>July&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  2017</option>
+<option value=20>August &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2017</option>
+<option value=21>September &nbsp;&nbsp;&nbsp;&nbsp;2017</option>
+<option value=22>October &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2017</option>
+<option value=23>November&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2017</option>
+<option value=24>December&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2017</option>
+<option value={{request.session.Month_Current}} selected="selected">
+{{Mnth}}&nbsp;&nbsp; {{Year}}	
+</option>
+</select>
+
+
+</form>
+	
+		
+		
+		
+<!--		{{Mnth}}&nbsp;&nbsp; {{Year}}</t>               -->
+
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	
+	{% if Mnth = 'December' and Year = 2017 %}
+	<font style="font-size:55%;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </font>
+	{% else %}
+	<div class="noPrint">
+		<a href="/trakberry/vacation_display_increment" style="color: black">
+		<img src="/static/media/right.png"  height="30" width="30"></a>
+	</div> 
+	{% endif %}
+	</center>
+	</th>
+</tr>
+
+	<tr>
+	<th bgcolor="#B7CCB6"><center><ss>Sunday</ss></th>
+	<th bgcolor="#B7CCB6"><center><ss>Monday</ss></th>
+	<th bgcolor="#B7CCB6"><center><ss>Tuesday</ss></th>
+	<th bgcolor="#B7CCB6"><center><ss>Wednesday</ss></th>
+	<th bgcolor="#B7CCB6"><center><ss>Thursday</ss></th>
+	<th bgcolor="#B7CCB6"><center><ss>Friday</ss></th>
+	<th bgcolor="#B7CCB6"><center><ss>Saturday</ss></th>
+
+	</tr>
+	
+	
+	<tr>
+
+
+{% for i in List %}
+
+{% if i.1 = 0 %}
+	<td  style="margin-left:9%;font-size:80%;" bgcolor="#FAFAF5">	<t>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</t>
+{% elif i.1 = request.session.current_day %}
+	<td  style="margin-left:9%;font-size:80%;vertical-align: top;" bgcolor="#FAFA00">	<o><a href="/trakberry/employee_vacation_enter_init/get/{{ i.1 }}" class="date"></a>&nbsp;&nbsp;&nbsp;&nbsp;{{i.1}}&nbsp;&nbsp;&nbsp;&nbsp;</a></o>
+{% else %}
+	<td  style="margin-left:9%;font-size:80%;vertical-align: top;" bgcolor="#FAFAF5">	<o><a href="/trakberry/employee_vacation_enter_init/get/{{ i.1 }}" class="date">&nbsp;&nbsp;&nbsp;&nbsp;{{i.1}}&nbsp;&nbsp;&nbsp;&nbsp;</a></o>
+{% endif %}
+<br>
+<!--
+****************************************************
+Enter Coder to output all vacations for date {i.1}
+****************************************************
+-->
+{% for ii in Tmp %}
+	{% if i.1 > 0 %}
+
+			{% if i.1 >= ii.4  and i.1 <= ii.5 and ii.8 == M %}
+				{% if ii.7 = 0 %}
+					<o>
+					&nbsp;&nbsp;&nbsp;
+					<a href="/trakberry/vacation_edit/get/{{ ii.6 }}" class="blue">{{ ii.0 }} </a></o>
+					<br>
+			
+				{% else %}
+					<!-- <div class="noPrint">  -->
+					<o>&nbsp;&nbsp;&nbsp;<a href="/trakberry/vacation_edit/get/{{ ii.6 }}" class="green">;#&nbsp;&nbsp{{ ii.0 }}&nbsp;&nbsp;#</a></o>
+					<br>
+					<!-- </div>  -->
+			                                {% if ii.7 = 0 %}
+                                        <o>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <a href="/trakberry/vacation_edit/get/{{ ii.6 }}" class="blue">{{ ii.0 }} </a></o>
+                                        <br>
+
+                                {% else %}
+                                        <!-- <div class="noPrint">  -->
+                                        <o>&nbsp;&nbsp;&nbsp;<a href="/trakberry/vacation_edit/get/{{ ii.6 }}" class="green">;#&nbsp;&nbsp{{ ii.0 }}&nbsp;&nbsp;#</a></o>
+                                        <br>
+                                        <!-- </div>  -->
+                                {% endif %}
+	{% endif %}
+
+			{% endif %}
+			{% if i.1 >= ii.4 and ii.5<ii.4 and ii.8 == M %}
+				{% if ii.7 = 0 %}
+			
+			
+
+				
+
+			
+	
+	
+	
+	{% endif %}
+	
+{% endfor %}
+		
+
+
+<br>
+
+<div class="noPrint">
+	<br>
+</div>
+	</td>
+
+{% if i.0 = 7 %}
+</tr><tr>
+{% endif %}
+{% if i.0 = 14 %}
+</tr><tr>
+{% endif %}
+{% if i.0 = 21 %}
+</tr><tr>
+{% endif %}
+{% if i.0 = 28 %}
+</tr><tr>
+{% endif %}
+{% if i.0 = 35 %}
+</tr><tr>
+{% endif %}
+
+{% endfor %}
+
+
+
+
+</tr>
+</table>
+
+
+<br><br>
+{{J}}
+{% endblock %}	

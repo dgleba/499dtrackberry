@@ -1,0 +1,101 @@
+{% extends "main.html" %}
+
+				{%block active_1%}
+                <li><a href="/trakberry/main"><span class="glyphicon glyphicon-globe"></span> Main</a></li>
+				{% endblock%}
+				{%block active_31%}
+				<li class="active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Supervisors <b class="caret"></b></a>
+				{%endblock%}
+				
+{% block content %}
+
+<!--  Validation Message Script  -->
+<script src="/static/form_validate.js"></script>
+
+
+				
+<div class="container"><br><br><br>
+    <div class="row">
+		<div class="col-sm-8">
+		<center><font color="black" style="z-index: 9999;"><h2><b><u>Vacation Entry{{Curr}}</u></b></h2> </font></center><br>
+		
+		
+<form action="" method="post">{% csrf_token %}
+<ul class="errorMessages"></ul>
+<!-- Style my form to [form_css]  -->
+
+<table>
+<tr><td><b><u>NAME (Full Name)</b></u>&nbsp;&nbsp;&nbsp;</td><td><input style="font-size:14px;width:320px;height:30px;" type="text" name="employee"></td></tr>
+
+
+
+
+
+
+<div>
+	<tr><td>
+	
+	<select id="shift" name="shift" required>
+	
+	
+	<b><u>
+	<label for="shift">Shift:</b></u>&nbsp;&nbsp;&nbsp;</label></td><td>
+	<select style="font-size:14px;width:320px;height:30px;" id="shift" name="shift" required>
+<option value=""></option>
+<option value="CSD1 Day">CSD1 Day</option>
+<option value="CSD1 Aft">CSD1 Aft</option>
+<option value="CSD1 Mid">CSD1 Mid</option>
+<option value="CSD2 Day">CSD2 Day</option>
+<option value="CSD2 Aft">CSD2 Aft</option>
+<option value="CSD2 Mid">CSD2 Mid</option>
+<option value="Cont A Nights">Cont A Nights</option>
+<option value="Cont A Days">Cont A Days</option>
+<option value="Cont B Nights">Cont B Nights</option>
+<option value="Cont B Days">Cont B Days</option>
+<option value="Maintenance">Maintenance</option>
+<option value="Forklift">Forklift</option>
+<option value="Press Setter">Press Setter</option>
+
+
+
+
+
+</select>
+
+</td></tr>
+	</div>
+		
+
+<tr><td><b><u>START DATE</b></u>&nbsp;&nbsp;&nbsp;</td><td><input style="font-size:12px;width:320px;height:30px;" type="date" name="date_st" value={{Curr}}></td></tr>
+<tr><td><b><u>END DATE</b></u>&nbsp;&nbsp;&nbsp;</td><td><input style="font-size:12px;width:320px;height:30px;" type="date" name="date_en" value={{Curr}}></td></tr>
+
+<tr><td>
+
+<input type="radio" name="typee" value="vacation" checked> Vacation    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <input type="radio" name="typee" value="cover"> In to Cover
+
+</td></tr>
+
+<tr><td>
+<div class="buttons"><button>Submit</button></div>
+<!--
+  <input style="background-color: #999999;border-radius: 10px;width:90px;height:30px;" type="submit">
+  -->
+  
+  </td></tr>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</table>
+
+
+
+</form>
+		  </div>
+
+		</div>
+	</div>	
+</div>	
+
+
+{% endblock %}	

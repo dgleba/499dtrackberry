@@ -1,0 +1,112 @@
+
+{% extends "main.html" %}
+
+{% block styleA %}
+
+@media screen {
+    body {
+        background-color: green;
+        
+    }
+    v{font-size: 100%;}
+    t{font-size: 100%;}
+    o{font-size: 100%;}
+    
+    table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+	}
+
+	th, td {
+    padding: 0px;
+	}
+	.noPrint { display:initial; }
+}
+
+@media print {
+	@page {size: landscape}
+body {
+	font-family: Georgia, serif;
+	background: none;
+	color: black;
+}
+#page {
+	width: 100%;
+	margin: 0; padding: 0;
+	background: none;
+}
+#container, #container2, #content
+{
+width: 100%; margin: 0; float: none;
+}
+
+    table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+	}
+	th, td {
+    padding: .25px;
+	}
+	v{font-size:100%;}
+    t{font-size: 60%;}
+    o{font-size: 50%;}
+    #header, #nav, .noPrint {display: none;}
+
+
+}
+
+
+.rotate {
+
+	margin-top: -3px;
+    /* Rotate div */
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+}
+
+
+{% endblock %}
+
+
+
+
+
+
+
+{% block content %}
+
+
+<br><Br>
+<br><br>
+
+<table style="width:70%;margin-left:10%;">
+<tr><th bgcolor="#CCDDE3" style="font-size: 200%;" colspan="6">
+<center><t>Robot List</center></t></th>
+</tr>
+<tr>
+<th bgcolor="#CCDDE3" height="100" width="{{D}}%"><center><div class="rotate" >Robott</div></th>
+<th bgcolor="#CCDDE3" height="100" width="{{D}}%"><center><div class="rotate">Machine 1</div></th>
+<th bgcolor="#CCDDE3" height="100" width="{{D}}%"><center><div class="rotate">Machine 2</div></th>
+<th bgcolor="#CCDDE3" height="100" width="{{D}}%"><center><div class="rotate">Machine 3</div></th>
+<th bgcolor="#CCDDE3" height="100" width="{{D}}%"><center><div class="rotate">Machine 4</div></th>
+<th bgcolor="#CCDDE3" height="100" width="{{D}}%"><center><div class="rotate">Part</div></th>
+</tr>
+
+{% for index in List %}
+	<tr>	
+	<td  bgcolor="#FAFAF5">	<center>{{index.1}}</td>
+	<td  bgcolor="#FAFAF5">	<center>{{index.2}}</td>
+	<td  bgcolor="#FAFAF5">	<center>{{index.3}}</td>
+	<td  bgcolor="#FAFAF5">	<center>{{index.4}}</td>
+	<td  bgcolor="#FAFAF5">	<center>{{index.5}}</td>
+	<td  bgcolor="#FAFAF5">	<center>{{index.6}}</td>
+	</tr>
+{% endfor %}
+
+</table>
+
+
+<br><br>
+
+{% endblock %}	

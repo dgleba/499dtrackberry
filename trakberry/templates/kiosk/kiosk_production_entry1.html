@@ -1,0 +1,83 @@
+<!-- ********************************** -->
+<!-- ****   Kiosk_Production_Entry.html   *** -->
+<!-- ********************************** -->
+
+
+{% extends "kiosk/kiosk.html" %}
+
+{% block grid %}
+	<link rel="stylesheet" href="/static/style_1/grid_kiosk_job_production.css">
+{% endblock %}
+
+
+{% block content %}
+
+<form action="" method="post">{% csrf_token %}
+
+
+
+<br><br>
+<center>
+<div class="grid-container">
+	<div class="item1"> <font color="#000000" size ="6">Clock Number</div>
+	
+	<div class="item1"><input style="font-size:23px;text-align:center;" name="clock" type="number" value={{request.session.clock}}></div>
+	<div class="item2"><font color="#000000" size ="5"><u><b>Jobs</b></u></font> </div>
+	<div class="item3"><font color="#000000" size ="5"><u><b>Part</b></u></font> </div>
+	<div class="item4"><font color="#000000" size ="5"><u><b>Production</b></u></font> </div>
+	<div class="item5"><font color="#000000" size ="5"><u><b>Hours</b></u></font> </div>
+	<div class="item6"><font color="#000000" size ="5"><u><b>Downtime </b></u></font> </div>
+
+
+
+
+<div class="item2"><input style="font-size:23px;width:100px;height:60px;text-align:center;" value={{request.session.variable1}}  name="job1" type="text"></div>
+
+<div class="item3"><input style="font-size:23px;width:100px;height:60px;text-align:center;"  name="part1" type="text" ></div>
+
+<div class="item4"><input style="font-size:23px;width:100px;height:60px;"  name="prod1" type="text" autofocus></div>
+<div class="item5"><input style="font-size:23px;width:100px;height:60px;text-align:center;"  value = 8 name="hrs1" type="text"></div>
+<div class="item6"><input style="font-size:23px;width:100px;height:60px;"  name="dwn1" type="text"></div>
+
+
+
+<div class="item2"><input style="font-size:23px;width:100px;height:60px;text-align:center;" value={{request.session.variable2}}  name="job2" type="text"></div>
+
+<div class="item3"><input style="font-size:23px;width:100px;height:60px;text-align:center;"  name="part1" type="text" ></div>
+
+<div class="item4"><input style="font-size:23px;width:100px;height:60px;"  name="prod1" type="text" autofocus></div>
+<div class="item5"><input style="font-size:23px;width:100px;height:60px;text-align:center;"  value = 8 name="hrs1" type="text"></div>
+<div class="item6"><input style="font-size:23px;width:100px;height:60px;"  name="dwn1" type="text"></div>
+
+
+</div>
+
+
+<br>
+
+&emsp;<input style="font-size:23px;width:100px;height:60px;text-align:center;" value={{request.session.variable3}}  name="job3" type="text">
+
+&emsp;<input style="font-size:23px;width:100px;height:60px;text-align:center;"  name="part1" type="text" >
+
+&emsp;<input style="font-size:23px;width:100px;height:60px;"  name="prod1" type="text" autofocus>
+&emsp;<input style="font-size:23px;width:100px;height:60px;text-align:center;"  value = 8 name="hrs1" type="text">
+&emsp;<input style="font-size:23px;width:100px;height:60px;"  name="dwn1" type="text">
+
+
+<br>
+
+&emsp;<input style="font-size:23px;width:100px;height:60px;text-align:center;" value={{request.session.variable4}}  name="job4" type="text">
+
+&emsp;<input style="font-size:23px;width:100px;height:60px;text-align:center;"  name="part4" type="text" >
+
+&emsp;<input style="font-size:23px;width:100px;height:60px;"  name="prod4" type="text" autofocus>
+&emsp;<input style="font-size:23px;width:100px;height:60px;text-align:center;"  value = 8 name="hrs4" type="text">
+&emsp;<input style="font-size:23px;width:100px;height:60px;"  name="dwn4" type="text">
+
+
+</form>
+
+
+
+
+{% endblock %}

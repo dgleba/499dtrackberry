@@ -1,0 +1,150 @@
+
+
+
+{% extends "main.html" %}
+
+	
+{% block content %}
+<center style="margin-left:-20%;">
+	<br><br><br><br>
+	
+<form action="" method="post">{% csrf_token %}
+<table border ="1" style="width:75%;margin-left:10%;">
+
+<tr>
+
+
+
+
+<th colspan="4" bgcolor="#B6D6E0" style="width:20%";>
+	
+
+<font color="#000000" size ="5"><center>Part</center>
+
+</th>
+
+</tr><tr>
+
+
+
+<th  bgcolor="#B6D6E0" style="width:20%";>
+
+{% for i in List %}
+
+<br>
+<button style="background-color: #5CC4ED;border-radius: 20px;width:90%;height:200%;font-weight: 700;
+	type="submit" name="one" value="{{i.0}}" /><font color="#000000" size ="3">{{i.0}}</font></button>
+<br>
+{% if i.1 == aa %}
+</th></tr><tr><th bgcolor="#B6D6E0">
+
+{% elif i.1 == bb %}
+</th><th bgcolor="#B6D6E0">
+
+
+{% endif %}
+
+
+
+{% endfor %}
+
+
+
+
+</th></tr>
+</table>
+
+<!--
+<table border ="1" style="width:58%;margin-left:10%;">
+
+<tr><th  bgcolor="#B6D6E0" style="width:20%";>
+<font color="#000000" size ="4" style="float:right;">Op: &nbsp;&nbsp;&nbsp;
+</th>
+
+<th bgcolor="#B6D6E0">
+<input style="font-size:14px;width:100%;height:30px;" type="text" name="Op">
+</th>
+
+<tr><th  bgcolor="#B6D6E0" style="width:20%";>
+<font color="#000000" size ="4" style="float:right;">Customer: &nbsp;&nbsp;&nbsp;
+</th>
+<th bgcolor="#B6D6E0">
+<select style="font-size:14px;width:100%;height:30px;" name="Customer" >
+	{% for iitem in LList %}
+		<option value={{iitem.0}}>{{iitem.0}}</option>
+	{% endfor %}
+</select>
+
+</th>
+
+<tr><th  bgcolor="#B6D6E0" style="width:20%";>
+<font color="#000000" size ="4"  style="float:right;">Skids: &nbsp;&nbsp;&nbsp;
+</th>
+
+<th bgcolor="#B6D6E0">
+<input style="font-size:14px;width:100%;height:30px;" type="text" name="Final">
+</th>
+
+<tr><th  bgcolor="#B6D6E0" style="width:20%";>
+<font color="#000000" size ="4"  style="float:right;">Blue: &nbsp;&nbsp;&nbsp;
+</th>
+
+<th bgcolor="#B6D6E0">
+<input style="font-size:14px;width:100%;height:30px;" type="text" name="Blue">
+</th>
+<tr><th  bgcolor="#B6D6E0" style="width:20%";>
+<font color="#000000" size ="4"  style="float:right;">Green: &nbsp;&nbsp;&nbsp;
+</th>
+
+<th bgcolor="#B6D6E0">
+<input style="font-size:14px;width:100%;height:30px;" type="text" name="Green">
+</th>
+<tr><th  bgcolor="#B6D6E0" style="width:20%";>
+<font color="#000000" size ="4"  style="float:right;">Cart: &nbsp;&nbsp;&nbsp;
+</th>
+
+<th bgcolor="#B6D6E0">
+<input style="font-size:14px;width:100%;height:30px;" type="text" name="Cart">
+</th>
+
+
+<tr><th  bgcolor="#B6D6E0" style="width:20%";>
+<font color="#000000" size ="4"  style="float:right;">Wire: &nbsp;&nbsp;&nbsp;
+</th>
+
+<th bgcolor="#B6D6E0">
+<input style="font-size:14px;width:100%;height:30px;" type="text" name="Wire">
+</th>
+
+
+<tr><th  bgcolor="#B6D6E0" style="width:20%";>
+<font color="#000000" size ="4"  style="float:right;">Qty: &nbsp;&nbsp;&nbsp;
+</th>
+<th bgcolor="#B6D6E0">
+<input style="font-size:14px;width:100%;height:30px;" type="text" name="Quantity">
+</th>
+</tr>
+
+</table>
+
+
+
+<table border ="0" style="width:40%;margin-left:10%;">
+<tr><th><center>
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input style="text-align: left;width:200px;height:40px;font-size: 18px;border-style: solid;border-color:#A1A1A1;border-radius: 10px;" type="submit" value="              Enter">
+</th></tr>
+
+</table>
+
+-->
+
+</form>
+
+</center>
+
+
+
+{% endblock %}

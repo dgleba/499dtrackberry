@@ -1,0 +1,68 @@
+
+{% extends "main.html" %}
+
+{% block content %}
+
+<br><br>
+ <!-- Format for Background image -->
+<style type="text/css">
+#full-screen-background-image {z-index: -999;min-height: 110%; min-width: 100%;width: 100%;height: 110%;position: fixed;top: 0;  left: 0;}
+</style>
+<!-- **************************** -->
+
+
+<body>
+<img alt="full screen background image" src="/media/paper3.jpg" id="full-screen-background-image"/>
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-sm-9"><font color="#000000" size ="5"><center><b><u>Machine Down App</u></b></center></div>
+	</div>
+	<div class="row">
+	<br>
+	{% block header %}
+	<form action="" method="post">{% csrf_token %}
+	
+			<div class="col-sm-12">
+		<button style="text-align: left;width:31%;font-size: 60%;border-style: solid;border-color:#A1A1A1;background-color:#A6FA89;border-radius: 10px;"type="submit" name="one" value="-1" /><center><b>Refresh</b></center></button>
+		<button style="text-align: left;width:31%;font-size: 60%;border-style: solid;border-color:#A1A1A1;background-color:#97E4FC;border-radius: 10px;"type="submit" name="one" value="-2" /><center><b>Call Tech</b></center></button>
+		<button style="text-align: left;width:31%;font-size: 60%;border-style: solid;border-color:#A1A1A1;background-color:#FCC8B8;border-radius: 10px;"type="submit" name="one" value="-3" /><center><b>Call Maint</b></center></button>
+         <!--
+		<center><a href="/trakberry/sup" style="color: black">REFRESH</b></a></center>
+		</div> 
+		
+		
+		<div class="col-sm-2" style="background-color: #CFCFCF;border-radius: 25px;border-style: solid;border-width: 1px;border-color: #000000;height:30px;"><font color="#000000" size ="3" border="1"><b>
+		<center><a href="/trakberry/sup_down_tech" style="color: black">Call Tech</b></a></center>
+		</div>
+		
+		<div class="col-sm-2" style="background-color: #CFCFCF;border-radius: 25px;border-style: solid;border-width: 1px;border-color: #000000;height:30px;"><font color="#000000" size ="3" border="1"><b>
+		<center><a href="/trakberry/sup_down_elec" style="color: black">Call Maint</b></a></center>
+		</div>
+		
+		-->
+		</div>
+	{% endblock %}			
+	</div>	
+<font color="#000000" size ="3" border="1">
+<br>
+
+{% for i in L %}
+    <div class="row">
+	<div class="col-sm-12">
+	<!--
+	<button style="text-align: left;width:100%;font-size: 100%;border-style: solid;border-color:  {{i.5}};border-radius: 10px;"type="submit" name="one" value="{{i.2}}" />[{{i.4}}]  {{i.0}}({{i.3}}):{{i.1}}</button></div>
+	-->
+	<button style="text-align: left;width:100%;font-size: 100%;border-style: solid;border-color:#A1A1A1;border-radius: 10px;"type="submit" name="one" value="{{i.2}}" /><font color="{{i.5}}">[</font>{{i.4}}<font color="{{i.5}}">] </font> {{i.0}}({{i.3}}):{{i.1}}</button></div>
+
+	</div>	
+
+<br>
+	
+
+{% endfor %}
+</form>
+</div>
+
+{% endblock %}	

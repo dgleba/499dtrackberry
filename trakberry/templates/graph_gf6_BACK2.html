@@ -1,0 +1,71 @@
+
+<html>
+<body>
+
+<!-- ******   Load Scripts for graphs  ****** -->
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	
+<script type="text/javascript">
+<!-- **************************************** -->
+google.load('visualization', '1', {
+    packages: ['corechart', 'line']
+});
+google.setOnLoadCallback(drawCurveTypes);
+
+function drawCurveTypes() {
+
+	var obj = [
+			{% for item in GList %}
+            [new Date({{item.0}}*1000),{{item.1}},{{item.2}},{{item.3}}],
+            {% endfor %}
+        ];
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('datetime', 'Date');
+    data.addColumn('number', 'Production');
+    data.addColumn('number', 'Target');
+	data.addColumn('number', '85% Target');
+	data.addRows(obj)
+
+ 
+    var options = {
+		title: "Shift Production Chart For {{request.session.machine_chart}}",
+		chartArea: {
+			backgroundColor: {
+				stroke: '#4322c0',
+				strokeWidth: 3
+			}
+		},
+		//backgroundColor: '#F5EBE1',
+        hAxis: {
+            title: 'Time',
+			format: "HH:mm",
+			gridlines: { count: 20 }
+			
+        },
+		
+        vAxis: {
+            title: 'Quantity',
+			gridlines: { count: 15 }
+        },
+        series: {
+            1: {
+                curveType: 'function'
+            }
+        }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+}
+</script>
+    
+    
+<div id="chart_div" style="width: 100%; height: 500px;margin-left:15%; "></div>
+
+
+
+
+</body>
+
+</html>

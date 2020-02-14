@@ -1,0 +1,160 @@
+
+{% extends "main.html" %}
+
+{% block refresh %}
+{% if request.session.details_track = 0 %}
+
+{% endif %}	
+
+
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+google.load('visualization', '1', {
+    packages: ['corechart', 'line']
+});
+google.setOnLoadCallback(drawCurveTypes);
+
+function drawCurveTypes() {
+
+	var obj = [
+			{% for item in GList %}
+            [new Date({{item.0}}*1000),{{item.1}},{{item.2}},{{item.3}}],
+            {% endfor %}
+        ];
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('datetime', 'Date');
+    data.addColumn('number', 'Production');
+    data.addColumn('number', 'Target');
+	data.addColumn('number', '85% Target');
+	data.addRows(obj)
+
+ 
+    var options = {
+		title: "Shift Production Chart For {{request.session.machine_chart}}",
+		chartArea: {
+			backgroundColor: {
+				stroke: '#4322c0',
+				strokeWidth: 3
+			}
+		},
+		//backgroundColor: '#F5EBE1',
+        hAxis: {
+            title: 'Time',
+			format: "HH:mm",
+			gridlines: { count: 20 }
+			
+        },
+		
+        vAxis: {
+            title: 'Quantity',
+			gridlines: { count: 15 }
+        },
+        series: {
+            1: {
+                curveType: 'function'
+            }
+        }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+}
+    </script>
+	
+{% endblock %}
+
+
+
+{% block content %}
+
+<!-- ******   Load Style for Table  ****** -->
+	<link rel='stylesheet' href='/static/style_1/table1.css'>
+<!-- **************************************** -->
+
+<br>
+<font style="margin-left:37%;font-size:225%;"><b>Snapshot In Time &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></font>
+<br>
+
+<font style="margin-left:39%;font-size:100%;"><b>{{S}}</b></font>
+
+<br>
+
+
+
+<table style="width:90%;margin-left:5%;">
+<tr><th bgcolor="#B6D2DB" style="font-size: 200%;" colspan="3">
+
+<center>GF6 Input</center>
+
+</th></tr>
+
+<tr><th bgcolor="#C5DDE6"><center>OP 10</th><th bgcolor="#C5DDE6"><center>OP 20</th><th bgcolor="#C5DDE6"><center>OP 30</th></tr>
+{% for index in list %}
+	<tr>
+	<th bgcolor="#DFE9ED">
+	<div id="page-wrap">
+		<a href="#" title={{index.17}}>
+		<button style="text-align: left;width:200%;margin-left:-50%;font-size: 90%;border-style: solid;border-color:#A1A1A1;
+		background-color:green;
+		color: #000000;
+		background-image: linear-gradient(0deg, {{index.7}},{{index.7}},{{index.7}});
+		border-radius: 10px;" /><center><b>
+		{{index.5}}</b></center></button></a>
+	</div>
+	</th>
+	<th bgcolor="#DFE9ED">
+	<div id="page-wrap">
+		<a href="#" title={{index.9}}>
+		<button style="text-align: left;width:200%;margin-left:-50%;font-size: 90%;border-style: solid;border-color:#A1A1A1;
+		background-color:green;
+		color: #000000;
+		background-image: linear-gradient(0deg, {{index.7}},{{index.7}},{{index.7}});
+		border-radius: 10px;" /><center><b>
+		{{index.6}}</b></center></button></a>
+	</div>
+	</th>	
+	<td bgcolor="#DFE9ED">
+	<div id="page-wrap">
+		<a href={{index.8}} title={{index.1}}>
+		<button style="text-align: left;width:300%;margin-left:-100%;font-size: 90%;border-style: solid;border-color:#A1A1A1;
+		background-color:green;
+		color: #000000;
+		background-image: linear-gradient(0deg, {{index.4}},{{index.2}},{{index.3}});
+		border-radius: 10px;"><center><b>
+		{{index.0}}</b><br>Break:{{index.9}}min Break:{{index.10}}min</button></a>
+	</div></center>
+	</td></tr>	
+
+{% endfor %}
+				
+</table>
+
+	<br><br>
+		{% if request.session.machine_chart == "nope" %}
+    <div class="row">
+		<div class="col-sm-10">
+			
+		
+		</div>
+	</div>	
+	{% else %}
+
+    <div class="row">
+		<div class="col=sm-2">&nbsp;&nbsp;</div>
+		<div class="col-sm-8"><center>
+			<div id="chart_div" style="width: 100%; height: 500px;margin-left:15%; "></div>
+		
+		</div>
+		<div class="col=sm-2">
+		<a href="/trakberry/graph_close_snap/">
+		<button style="text-align: left;width:2%;font-size: 70%; margin-left:10%;border-style:solid;border-color:#A1A1A1;background-color:#C9C9C9;border-radius: 5px;color: #000000;">
+		<center><b>X</b></center></button></a>
+		
+		
+		
+		
+		</div>
+	</div>	
+{% endif %}
+{% endblock %}	

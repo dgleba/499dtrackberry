@@ -1,0 +1,67 @@
+
+{% extends "main.html" %}
+{% block styleA %}
+
+a.black:link {color: black;}
+a.black:active {color: black;}
+a.black:visited {color: black;}
+a.black:hover {color: #ffff00;}
+
+{% endblock %}
+				
+{% block content %}
+
+				
+				
+<div class="container"><br><br><br>
+    <div class="row">
+		<div class="col-sm-8">
+		<center><font color="black" style="z-index: 9999;"><h2><b><u>Job List</u></b></h2> </font></center><br>
+<form action="" method="post">{% csrf_token %}
+<!-- Style my form to [form_css]  -->
+
+<table style="border-width:2px;	
+    border-style:outset;">
+<tr><td><b><u>Description</b></u>&nbsp;&nbsp;&nbsp;</td><td><input style="font-size:14px;width:320px;height:30px;" type="text" name="description" value="{{request.session.description_old}}"></td></tr>
+
+
+
+
+<tr><td><b><u>Job</b></u>&nbsp;&nbsp;&nbsp;</td><td><input  style="font-size:14px;width:320px;height:30px;" type="text" name="job" value="{{request.session.job_old}}"></td></tr>
+
+
+
+
+
+<tr><td><br>
+  <input style="background-color: #999999;border-radius: 10px;width:90px;height:30px;" type="submit" value="Rename"></td>
+
+  <td><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  
+  <!-- DELETE Button used to delete Job completely from system -->
+  
+  <a href="/trakberry/job_info_delete/" onclick="return confirm('Deleting This Item will erase it from all Matrices.  Are You Sure?');" class="black">
+	  <INPUT style="background-color: #999999;border-radius: 10px;width:90px;height:30px;" Type="button" VALUE="Delete"></a>
+  
+  <!--
+   <INPUT style="background-color: #999999;border-radius: 10px;width:90px;height:30px;" Type="button" VALUE="Delete" onClick="location.href='/trakberry/job_info_delete/';">
+   -->
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      
+<!-- BACK Button used as a CANCEL -->
+ <INPUT style="background-color: #999999;border-radius: 10px;width:90px;height:30px;" Type="button" VALUE="Cancel" onClick="history.go(-1);return true;">
+  
+  </tr>
+
+
+</table>
+
+</form>
+		 
+
+		</div>
+	</div>	
+</div>	
+
+
+{% endblock %}	

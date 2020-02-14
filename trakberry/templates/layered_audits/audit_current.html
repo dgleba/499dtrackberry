@@ -1,0 +1,59 @@
+
+
+
+{% extends "main.html" %}
+
+
+{% block styleB %}
+	<!-- Use below query to determine if message should appear -->
+	{% if request.session.layer_audit_check = 0 %} 
+		<script type="text/javascript">
+			$(document).ready(function(){
+			$("#myModal").modal({backdrop:'static', keyboard:false});
+			});
+		</script>
+	{% endif %}
+{% endblock %}
+	
+{% block content %}
+
+
+
+
+
+<!-- Modal For Layered Audit Popup -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+          <h4 class="modal-title"><font color="#000000" size ="3">Todays Layered Audit <br> check your email</font></h4>
+        </div>
+        <div class="modal-body">
+          <p><font color="#000000" size ="2">{{tmp2.1}} <br> Part:{{tmp2.2}}<br>Operation:{{tmp2.5}}</font></p>
+        </div>
+        <div class="modal-footer">
+			
+			<!-- Button to select this layered audit and email the appropriate link to the supervisor -->
+			<a href="/trakberry/layer_select">
+				<button>&nbsp;&nbsp;&nbsp;&nbsp; OK &nbsp;&nbsp;&nbsp;&nbsp;</button>
+			</a>  
+			<!-- ************************************************************************************ -->
+			
+			<!-- Button to increment to the next available layered audit should the current one not be the appropriate one -->
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="/trakberry/layer_choice">
+				<button>Select Different </button>
+			</a>  
+			<!-- ********************************************************************************************************* -->
+			
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End of Modal for Layered Audit Popup -->
+  
+
+
+{% endblock %}

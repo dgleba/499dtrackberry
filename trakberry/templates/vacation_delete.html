@@ -1,0 +1,122 @@
+
+{% extends "main.html" %}
+
+{% block styleA %}
+ 
+
+@media screen {
+    body {
+        background-color: green;
+        
+    }
+    v{font-size: 100%;}
+    t{font-size: 100%;}
+    o{font-size: 100%;}
+    
+    table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+	}
+
+	th, td {
+    padding: 6px;
+	}
+	.noPrint { display:initial; }
+}
+
+
+
+@media print {
+    body {
+        margin: 5mm 25mm 25mm 25mm;
+     }
+	v{font-size:100%;}
+    t{font-size: 70%;}
+    o{font-size: 80%;}
+    
+    table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+	}
+	
+	th, td {
+    padding: .25px;
+	}
+	.noPrint { display:none; }
+}
+
+{% endblock %}
+
+{% block refresh %}
+{% if request.session.details_track = 0 %}
+
+{% endif %}	
+
+	
+{% endblock %}
+
+
+
+
+{% block content %}
+
+
+
+
+<br>
+<v><font style="margin-left:19%;font-size:225%;"><b><t>Vacations</b></font><br><br>
+<div class="noPrint">
+	<!--
+	<button style="margin-left:10%;" onclick="myFunction()"><b>Print</b></button>
+	
+	--></div></v>
+<br>
+
+
+
+
+
+<table style="width:30%;margin-left:10%;">
+<tr><th bgcolor="#CCDDE3" style="font-size: 200%;" colspan="7">
+<center>
+	
+	Delete Entry
+	</center>
+	</th>
+</tr>
+
+
+	
+	
+
+<tr>
+<td  style="margin-left:9%;font-size:100%;" bgcolor="#FAFAF5"><center><t>Name</t></td>
+<td  style="margin-left:9%;font-size:100%;" bgcolor="#FAFAF5"><center><t>{{Tmp.0}}</t></td>
+</tr>
+<tr>
+<td  style="margin-left:9%;font-size:100%;" bgcolor="#FAFAF5"><center><t>Shift</t></td>
+<td  style="margin-left:9%;font-size:100%;" bgcolor="#FAFAF5"><center><t>{{Tmp.1}}</t></td>
+</tr>
+<tr>
+<td  style="margin-left:9%;font-size:100%;" bgcolor="#FAFAF5"><center><t>Start</t></td>
+<td  style="margin-left:9%;font-size:100%;" bgcolor="#FAFAF5"><center><t>{{Tmp.2}}</t></td>
+</tr>
+<tr>
+<td  style="margin-left:9%;font-size:100%;" bgcolor="#FAFAF5"><center><t>End</t></td>
+<td  style="margin-left:9%;font-size:100%;" bgcolor="#FAFAF5"><center><t>{{Tmp.3}}</t></td>
+</tr>
+
+<tr>
+	<td colspan="2"><center>
+<a href="{{request.session.local_toggle}}/vacation_delete" style="color: black;font-size:120%;"><b>YES</b></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="{{request.session.local_toggle}}/vacation_display" style="color: black;font-size:120%;"><b>NO</b></a>
+</center>
+</td>
+</tr>
+</table>
+
+
+<br><br>
+
+{% endblock %}	

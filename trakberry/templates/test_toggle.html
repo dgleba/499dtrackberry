@@ -1,0 +1,23 @@
+
+<link href="/static/bootstrap/css/bootstrap-toggle/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="/static/bootstrap/css/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+
+
+<script>$('#toggle-demo').bootstrapToggle('off')</script>
+
+
+<form action="" method="post">{% csrf_token %}
+
+<input id="tog" data-toggle="toggle" data-on="CSD2 Days" data-off="CSD2 Days" data-onstyle="primary"  type="checkbox" data-size="mini" 
+data-width="100" name="shift1">
+
+
+<input type="checkbox" checked data-toggle="toggle">
+
+
+<input style="background-color: #2A93BD;border-radius: 10px;width:205px;height:25px;font-weight: 600;" type="submit" value="FILTER">
+
+
+
+</form>
+

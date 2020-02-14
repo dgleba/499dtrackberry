@@ -1,0 +1,93 @@
+
+{% extends "main.html" %}
+
+				
+{% block content %}
+
+				
+				
+<div class="container"><br><br><br>
+    <div class="row">
+		<div class="col-sm-8">
+		<center><font color="black" style="z-index: 9999;"><h2><b><u>Employee Training</u></b></h2> </font></center><br>
+<form action="" method="post">{% csrf_token %}
+<!-- Style my form to [form_css]  -->
+
+<table style="border-width:2px;	
+    border-style:outset;">
+<tr><td><b><u>NAME</b></u>&nbsp;&nbsp;&nbsp;</td><td><input style="font-size:14px;width:320px;height:30px;" type="text" name="employee" value="{{ump2.1}}"></td></tr>
+
+
+
+<tr><td><b><u>Shift</b></u>&nbsp;&nbsp;&nbsp;</td><td>
+
+
+<select name ="shift" style="font-size:14px;width:320px;height:30px;">
+<option value="Cont A Nights CSD 2">Cont A Nights CSD 2</option>
+<option value="Cont B Nights CSD 2">Cont B Nights CSD 2</option>
+<option value="Cont A Days CSD 2">Cont A Days CSD 2</option>
+<option value="Cont B Days CSD 2">Cont B Days CSD 2</option>
+<option value="Mid CSD 2">Mid CSD 2</option>
+<option value="Day CSD 2">Day CSD 2</option>
+<option value="Aft CSD 2">Aft CSD 2</option>
+
+<option selected="selected">
+{{ump2.4}}
+</option>
+
+
+</select>
+
+
+</td></tr>
+<tr><td><b><u>Clock</b></u>&nbsp;&nbsp;&nbsp;</td><td><input  style="font-size:14px;width:320px;height:30px;" type="text" name="clock" value="{{ump2.2}}"></td></tr>
+
+
+<tr><td><b><u>Position</b></u>&nbsp;&nbsp;&nbsp;</td><td>
+
+<select name ="position" style="font-size:14px;width:320px;height:30px;">
+<option value="CNC">CNC</option>
+<option value="Production">Production</option>
+
+<option selected="selected">
+{{ump2.3}}
+</option>
+
+
+</select>
+	
+</td></tr>
+
+<tr><td><br>
+  <input style="background-color: #999999;border-radius: 10px;width:90px;height:30px;" type="submit" value="Submit"></td>
+
+  <td><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     
+      
+<input style="background-color: #999999;border-radius: 10px;width:90px;height:30px;" type="button" value="Delete" onclick="window.location.href='/trakberry/emp_matrix_delete/'">
+</td>
+
+  <td><br>
+      
+<!-- BACK Button used as a CANCEL -->
+ <INPUT style="background-color: #999999;border-radius: 10px;width:90px;height:30px;" Type="button" VALUE="Cancel" onClick="history.go(-1);return true;">
+ </td>
+  
+  </tr>
+
+
+
+
+
+
+</table>
+
+</form>
+		 
+
+		</div>
+	</div>	
+</div>	
+
+
+{% endblock %}	

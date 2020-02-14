@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+
+{% block refresh %}
+
+
+<!-- ******   Load Scripts for graphs  ****** -->
+    <!-- <script type="text/javascript" src="https://www.google.com/jsapi"></script> -->	
+	<script type="text/javascript" src="/static/google/jsapi"></script>
+	<script type="text/javascript">
+
+<!-- **************************************** -->
+
+
+google.load('visualization', '1', {
+    packages: ['corechart', 'line']
+});
+google.setOnLoadCallback(drawCurveTypes);
+
+function drawCurveTypes() {
+
+	var obj = [
+			{% for item in GList %}
+            [new Date({{item.0}}*1000),{{item.1}},{{item.2}},{{item.3}}],
+            {% endfor %}
+        ];
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('datetime', 'Date');
+    data.addColumn('number', 'Production');
+    data.addColumn('number', 'Target');
+	data.addColumn('number', '85% Target');
+	data.addRows(obj)
+
+ 
+    var options = {
+		title: "Shift Production Chart For {{request.session.machine_chart}}",
+		chartArea: {
+			backgroundColor: {
+				stroke: '#4322c0',
+				strokeWidth: 3
+			}
+		},
+		//backgroundColor: '#F5EBE1',
+        hAxis: {
+            title: 'Time',
+			format: "HH:mm",
+			gridlines: { count: 20 }
+			
+        },
+		
+        vAxis: {
+            title: 'Quantity',
+			gridlines: { count: 15 }
+        },
+        series: {
+            1: {
+                curveType: 'function'
+            }
+        }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+}
+    </script>
+	
+{% endblock %}
+
+
+
+
+
+<!-- ******   Load Style for Table  ****** -->
+	<link rel='stylesheet' href='/static/style_1/table1.css'>
+	<script src="/static/bootstrap/js/1.11.3/jquery.min.js"></script>
+	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+	
+	</head>
+<!-- **************************************** -->
+{% if request.session.details_track = 0 %}
+	<meta http-equiv="refresh" content="8; url={{request.session.local_toggle}}/display1" />
+{% endif %}	
+
+<body>
+
+<!-- Menu Bars -->
+<!-- <div class="navbar navbar-light navbar-fixed-top" style="background-color: #DFDFDF;border-width: thin;border-color: black;" role="navigation"> -->
+	<div class="navbar navbar-default navbar-fixed-top" style="background-color:rgb(214, 214, 214);border-color: rgb(26, 24, 11);border-width:1px" role="navigation">
+
+
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#" style="position:absolute;left:0px;top:-10px;">
+                <img src="/static/media/JELogo.gif?{{TCUR}}"  style="border-radius: 25px;" height="40" width="150">
+			</a>
+			<!-- test -->
+            <!-- <a class="navbar-brand" href="/trakberry/" style="position:absolute;left:0px;top:-10px;"><img src="/static/media/stack.jpg"  height="40" width="170"></a> -->
+        </div>
+        <div class="collapse navbar-collapse">
+            
+            <ul class="nav navbar-nav">
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+
+				<li><a href="#" style="color:black;"><span class="glyphicon glyphicon-eye-open"></span>Main Program</a></li>
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+
+				<!-- Choice if Tracking is on or not for Menu Item -->
+				{% if request.session.details_track = 0 %}
+					<li><a href="{{request.session.local_toggle}}/details_track" style="color:black;background-color: #E08E8E;">Pause Tracking</a></li>
+				{% else %}
+					<li><a href="{{request.session.local_toggle}}/details_track" style="color:black;background-color: #54E143;">Start Tracking</a></li>
+				{% endif %}
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+				<li><a href="#" style="color:black;"><span class="glyphicon glyphicon-th"></span>Daily Reports</a></li>
+				<!-- <li><a href="{{request.session.local_toggle}}/reports_day" style="color:black;"><span class="glyphicon glyphicon-th"></span>Daily Reports</a></li> -->
+				<!-- End Choice -->
+
+
+		</div><!--/.nav-collapse -->
+	</div>
+</div>
+
+<!--  End of Menu Bar -->
+
+{% block content %}
+
+
+
+<br>
+<font style="margin-left:37%;font-size:225%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font>
+
+
+
+
+
+<center>
+<table style="width:80%;margin-left:10%;">
+<tr><th bgcolor="#B6D2DB" style="font-size: 200%;">
+<center>AB1V Tracking</center>
+</th></tr></table>
+<table style="width:80%;margin-left:10%;">
+	
+<tr>
+	
+	
+	<th bgcolor="#B7CCB6"><center><font style="font-size:126%;"><b>50-5399<font style="font-size:80%;"> ({{totalA}}pcs )</center></font>
+
+
+
+</th>
+
+
+
+
+<th bgcolor="#B7CCB6"><center><font style="font-size:126%;"><b>50-5401<font style="font-size:80%;"> ({{totalC}}pcs) </th>
+	<th bgcolor="#B7CCB6"><center><font style="font-size:126%;"><b>50-5404<font style="font-size:80%;"> ({{totalB}}pcs) </th>
+</tr>
+
+{% for index in list %}
+	<tr>
+<!-- {% if index.0 = '50-5399' %} -->
+	<th bgcolor="#ffffff">
+	
+	
+		<a href="{{request.session.local_toggle}}/graph_gf6/get/{{index.0}}" onclick="window.open('{{request.session.local_toggle}}/graph_gf6/get/{{index.0}}', 'newwindow', 'width=1400, height=600'); return false;">
+		
+		<button style="text-align: left;width:100%;height:100%;font-size: 120%;color: #000000;
+			border-style: solid;border-color:#A1A1A1;border-radius: 0px;background-color:green;
+			background-image: linear-gradient(0deg, {{index.4}},{{index.2}},{{index.3}});
+			"/><b><center><br><br><br>
+		<br><font style="font-size:150%;"><b> {{index.7}}pcs<br> OAq: {{index.24}}</font></center> <br><br><br>
+
+	
+		
+		
+	</th>	
+	<!-- {% endif %}
+	{% if index.8 = 'Optimize' %} -->
+	<th bgcolor="#ffffff">
+	
+		<!--
+		<a href="{{request.session.local_toggle}}/graph_gf6/get/{{index.8}}" onclick="window.open('{{request.session.local_toggle}}/graph_gf6/get/{{index.8}}', 'newwindow', 'width=1400, height=600'); return false;">	
+		<button style="text-align: left;width:100%;height:100%;font-size: 120%;color: #000000;
+			border-style: solid;border-color:#A1A1A1;border-radius: 0px;background-color:green;
+			background-image: linear-gradient(0deg, {{index.12}},{{index.10}},{{index.11}});
+			"/><center><b>
+			-->
+			
+		<button style="text-align: left;width:100%;height:100%;font-size: 120%;color: #000000;
+			border-style: solid;border-color:#A1A1A1;border-radius: 0px;background-color:grey;"/><center><b>
+		&nbsp;<br> <font style="font-size:80%;"><b>&nbsp;<br>&nbsp;</font></center> 
+			
+			
+			
+			<br>
+		<br> <font style="font-size:150%;"><b><center>
+		Not Connected
+		
+		<!-- {{index.15}}pcs<br>OA: {{index.25}} -->
+		
+		</font></center> <br><br><br>
+
+	
+	
+	</th>
+<!-- 
+{% endif %} -->
+	
+	</tr>
+{% endfor %}
+				
+</table>
+</center>
+	<br><br>
+		{% if request.session.machine_chart == "nope" %}
+    <div class="row">
+		<div class="col-sm-10">
+			
+		
+		</div>
+	</div>	
+	{% else %}
+
+    <div class="row">
+		<div class="col=sm-2">&nbsp;&nbsp;</div>
+		<div class="col-sm-8"><center>
+			<div id="chart_div" style="width: 100%; height: 500px;margin-left:15%; "></div>
+		
+		</div>
+		<div class="col=sm-2">
+		<a href="{{request.session.local_toggle}}/graph_close/">
+		<button style="text-align: left;width:2%;font-size: 70%; margin-left:10%;border-style:solid;border-color:#A1A1A1;background-color:#C9C9C9;border-radius: 5px;color: #000000;">
+		<center><b>X</b></center></button></a>
+		
+		
+		
+		
+		</div>
+	</div>	
+{% endif %}
+
+<br><br><br>
+<center>
+<table style="width:70%;margin-left:10%;">
+<tr><th style="font-size: 130%;">
+<center>*********    Cliick the Count Box to view the graph of production vs time    *************</center>
+
+<br><br>
+<a href="{{request.session.local_toggle}}/graph_gf6/get/{{5399}}" onclick="window.open('{{request.session.local_toggle}}/graph_gf6/get/5399', 'newwindow', 'width=1400, height=600'); return false;">	
+	<button style="text-align: left;width:100%;height:100%;font-size: 120%;color: #000000;
+		border-style: solid;border-color:#A1A1A1;border-radius: 0px;background-color:green;
+		background-image: linear-gradient(0deg, {{index.4}},{{index.2}},{{index.3}});
+		"/><b><center></a><br><br><br>
+	<br><font style="font-size:150%;"><b> {{index.7}}pcs<br> OAq: {{index.24}}</font></center> <br><br><br>
+
+
+{% for index in list %}
+{% for i in index %}
+{{i}}<br>
+{% endfor %} 
+<br>*************************************************************************************************************************<br>
+{% endfor %}
+</th></tr></table>
+</center>
+
+
+</body>
+</html>
+
+{% endblock %}	
+

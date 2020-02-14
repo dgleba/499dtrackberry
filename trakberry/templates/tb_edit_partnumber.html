@@ -1,0 +1,28 @@
+
+{%extends "gf6input.html"%}
+{% block editpart %}
+<form action="" method="post">{% csrf_token %}
+<!-- Style my form to [form_css]  -->
+<table>
+
+<b><u>Machine</b></u>&nbsp;
+<select name ="mc">
+<option value="677">677</option>
+<option value="748">748</option>
+<option value="749">749</option>
+<option value="750">750</option></select>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b><u>Part Number</b></u>&nbsp;
+<select name ="part">
+<option value="50-3632">50-3632</option>
+<option value="50-0786">50-0786</option>
+<option value="50-4916">50-4916</option>
+<option value="50-2407">50-2407</option></select>
+&nbsp;&nbsp;&nbsp;
+<input type="submit">
+
+
+
+</table>
+</form>
+{% endblock %}

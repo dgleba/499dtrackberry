@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset='UTF-8'>
+	
+	<title>Bubble Point Tooltips with CSS3, HTML5, & jQuery</title>
+	
+	<link rel='stylesheet' href='/static/tooltip/css/style.css'>
+	<link rel='stylesheet' href='/static/tooltip/css/tooltips.css'>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+	<!--[if !IE | (gt IE 8)]><!-->
+	<script src="/static/tooltip/js/tooltips.js"></script>
+	<script>
+		$(function() {
+			$("#page-wrap a[title]").tooltips();
+		});
+	</script>
+	<!--<![endif]-->
+
+</head>
+
+<body>
+
+	<div id="page-wrap">
+		
+		<h1><span>Bubble Point</span> Tooltips</h1>
+		
+		<p>Pellentesque habitant morbi tristique <a href="#" title=machine:{{machine.1}}({{count.1}})>Machine #</a> et netus et malesuada fames ac 
+		<a href="#" title="Hi, I'm a tooltip thingy.">turpis</a> eges
+		<a href="#" title="Ooooh<br>Look at me<br>I'm a fancy tooltip">eleifend</a> leo.</p>
+		<p><a href="#" title=Count:{{machine.2}}ThisOne> Machine</a></p>
+	
+	</div>
+	
+</body>
+
+</html>

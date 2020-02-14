@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+ <!-- Format for Background image -->
+<style type="text/css">
+html, body {height: 100%;width: 100%;padding: 0;margin: 0;}
+#full-screen-background-image {z-index: -999;min-height: 110%; min-width: 100%;width: 100%;height: 110%;position: fixed;top: 0;  left: 0;}
+	.banner2_bg{position:absolute;background-color: #000000;opacity: 0.8;filter:alpha(opacity=80);width:auto; height:auto;z-index:-440;	border-radius: 25px;;}
+	{% block style1 %}
+.banner1_bg{position:absolute;background-color: #000000;opacity: 0.8;filter:alpha(opacity=80);width:auto; height:auto;z-index:-440;	border-radius: 25px;}
+	{% endblock %}
+	div.hd1 {position: absolute;top: 50%;}
+
+   .banner2_bg{position:absolute;background-color: #767c15;	border-radius: 25px;}	
+   
+.multiple-borders {
+  -webkit-box-shadow:
+            0px 0px 0px 2px rgba(0,0,0,0.6),
+                0px 0px 0px 14px #fff,
+                0px 0px 0px 18px rgba(0,0,0,0.2),
+                6px 6px 8px 17px #555;
+   
+     -moz-box-shadow:
+            0px 0px 0px 2px rgba(0,0,0,0.6),
+                0px 0px 0px 14px #fff,
+                0px 0px 0px 18px rgba(0,0,0,0.2),
+                6px 6px 8px 17px #555;
+   
+          box-shadow:
+            0px 0px 0px 2px rgba(0,0,0,0.6),
+                0px 0px 0px 14px #fff,
+                0px 0px 0px 18px rgba(0,0,0,0.2),
+                6px 6px 8px 17px #555;
+}   
+
+</style>
+<!-- **************************** -->
+
+  <title>Stackpole Production</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+	</head>
+<body>
+{% block refresh %}
+{% endblock %}
+
+
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  
+      <img src="/media/stack.jpg"  height="40" width="170"> 
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+		<li><a href=""></a></li>
+        <li><a href="/trakberry/main"><span class="glyphicon glyphicon-globe"></span> Main</a></li>
+		<li><a href="/trakberry/display"><span class="glyphicon glyphicon-eye-open"></span> Live Track</a></li>
+		
+
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/trakberry/reports"><span class="glyphicon glyphicon-stats"></span> Reports</a>
+		<ul class="dropdown-menu">
+		<li><a href="#">Page 1-1</a></li>
+            <li><a href="#">Page 1-2</a></li>
+            <li><a href="/trakberry/reports"></a></li>
+          </ul>
+        </li>
+
+
+
+
+		
+		
+		<li><a href="/trakberry/scheduler"><span class="glyphicon glyphicon-user"></span> Employee Schedules</a></li>
+        <li><a href="/trakberry/machinery"><span class="glyphicon glyphicon-wrench"></span> Machinery</a></li>
+		<li><a href="/trakberry/inventory"><span class="glyphicon glyphicon-th"></span> Inventory</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<img src="/media/bar.gif" height="4px" width="100%" style="position : relative; top: -31px;"/>
+
+<font color=#000000 >
+<img alt="full screen background image" src="/media/paper3.jpg" id="full-screen-background-image"/>
+{% block content %}
+<div class="container"><br><br><br>
+    <div class="row">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-6"><div class="multiple-borders" style="border-radius: 25px;"><img class="img-responsive" src="/media/stackpole.jpg" style="border-radius: 25px;" height="700" width="1000"></div>
+		</div>
+		<div class="col-sm-2"></div>
+	</div>	
+</div>	
+
+{% endblock %}	
+	</font>
+</body>
+</html>

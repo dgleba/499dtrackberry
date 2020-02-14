@@ -1,0 +1,139 @@
+
+{% extends "main.html" %}
+
+{% block styleA %}
+
+@media screen {
+    body {
+        background-color: green;
+        
+    }
+    v{font-size: 100%;}
+    t{font-size: 110%;}
+    o{font-size: 100%;}
+    
+    table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+	}
+
+	th, td {
+    padding: 0px;
+	}
+	.noPrint { display:initial; }
+}
+
+@media print {
+	@page {size: landscape}
+body {
+	font-family: Georgia, serif;
+	background: none;
+	color: black;
+}
+#page {
+	width: 100%;
+	margin: 0; padding: 0;
+	background: none;
+}
+#container, #container2, #content
+{
+width: 100%; margin: 0; float: none;
+}
+
+    table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+	}
+	th, td {
+    padding: .25px;
+	}
+	v{font-size:100%;}
+    t{font-size: 60%;}
+    o{font-size: 50%;}
+    #header, #nav, .noPrint {display: none;}
+
+
+}
+
+a.red:link {color: #ffffff; background-color: #145671;border-radius: 25px; font-style: normal;}
+a.red:active {color: #ffffff;background-color: #145671;border-radius: 25px; font-style: normal;}
+a.red:visited {color: #ffffff; background-color: #145671;border-radius: 25px; font-style: normal;}
+a.red:hover {color: #ffffff; background-color: #218AB5;border-radius: 25px; font-style: normal;}
+
+
+a.black:link {color: black;}
+a.black:active {color: black;}
+a.black:visited {color: black;}
+a.black:hover {color: #ffffff; background-color: #082A38;border-radius: 15px; font-style: normal;}
+
+a.rouge:link {color: black;}
+a.rouge:active {color: black;}
+a.rouge:visited {color: black;}
+a.rouge:hover {color: #666666;}
+
+
+
+{% endblock %}
+
+<!--
+.rotate {
+
+    width: 50px;
+    height: 50px;
+    background-color: yellow;
+    /* Rotate div */
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+}
+-->
+
+
+
+{% block content %}
+
+<br><br><center>
+<table style="width:25%;"> 
+<tr><td bgcolor="#CCDDE3" style="font-size:20px;width:45%;">
+<b><center>
+Schedule 
+</center></b>
+
+<table style="width:94%;margin-left:3%;"> 
+
+<tr>
+<th bgcolor="#B1BFC4" rowspan="1"><center><t>Jobs<br>
+
+</t></th>
+	<th bgcolor="#B1BFC4" colspan="{{jndex.1}}" ><center><t>Employee
+</t></th></tr>
+
+
+
+
+
+
+{% for index in List %}
+	<tr>
+		<td  bgcolor="#FAFAF5" style="width:20%";>	
+			<center><font style="font-size:75%";>
+			({{index.1}}) {{index.5}}
+			</font>
+		</td>
+		<td  bgcolor="#FAFAF5" style="width:10%";>
+			<center><font style="font-size:75%";>
+			
+			</font>
+		</td>
+	</tr>	
+		
+{% endfor %}
+
+
+
+</table>
+
+
+<br><br>
+
+{% endblock %}	

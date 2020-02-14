@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+{% if request.session.route_1 =  3 %}}
+<!--
+<meta http-equiv="refresh" content="0; url=http://pmdsdata.stackpole.ca/prodhour-10r-op30/index.php?-action=new&-table=sc_prod_hour" />
+-->
+<meta http-equiv="refresh" content="0;  url={{request.session.local_toggle}}/kiosk_hourly_entry" />
+{% else %}
+<meta http-equiv="refresh" content="0; url={{request.session.local_toggle}}/{{request.session.route_1}}" />
+{% endif %}
+
+</body>
+</html>

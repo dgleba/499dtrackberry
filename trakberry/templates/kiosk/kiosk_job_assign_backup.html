@@ -1,0 +1,149 @@
+
+<!-- ********************************** -->
+<!-- ****   Kiosk_Job_assign.html   *** -->
+<!-- ********************************** -->
+
+
+{% extends "kiosk/kiosk.html" %}
+{% block content %}
+
+<form action="" method="post">{% csrf_token %}
+
+<center>
+<table style="width:70%;">
+
+<tr valign="middle"><th style="padding:20px;opacity: 0.99;filter:alpha(opacity=99);border-radius: 30px;" bgcolor="#DCDCDC" >
+	
+<!-- Place Stuff inside Box here  -->
+<input style="background-color: #AAA00A;border-radius: 10px;width:140px;height:60px;font-weight: 700;font-size:23px;align=left;" type="submit" value="Enter">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+<button style="background-color: #AAAAAA;border-radius: 10px;width:120px;height:60px;font-weight: 700;font-size:23px;align=left;" type="submit" name="kiosk_assign_button1" value="-1">Reset</button>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button style="background-color: #AAAAAA;border-radius: 10px;width:120px;height:60px;font-weight: 700;font-size:23px;align=right;" type="submit" name="kiosk_assign_button2" value="-2">Cancel</button>
+
+
+
+<br><br>
+<center>
+<font color="#000000" size ="6">Clock Number<br>
+<input style="font-size:23px;width:190px;height:60px;" name="clock" type="number" autofocus >
+
+<br><br>
+<font color="#000000" size ="6"><u><b>Jobs</b></u></font> 
+<br>
+
+
+1.
+<input style="font-size:23px;width:124px;height:60px;" list="browsers" name="job1" type="number">	
+<datalist id="browsers">
+
+{% for item in tmp %}
+
+<option value={{item.0}}>{{item.0}}</option>
+
+{% endfor %}
+
+</datalist>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2.
+<input style="font-size:23px;width:124px;height:60px;" list="browsers" name="job2" type="number">	
+<datalist id="browsers">
+
+{% for item in tmp %}
+
+<option value={{item.0}}>{{item.0}}</option>
+
+{% endfor %}
+</datalist>
+<br>
+3.
+<input style="font-size:23px;width:124px;height:60px;" list="browsers" name="job3" type="number">	
+<datalist id="browsers">
+
+{% for item in tmp %}
+
+<option value={{item.0}}>{{item.0}}</option>
+
+{% endfor %}
+
+</datalist>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4.
+<input style="font-size:23px;width:124px;height:60px;" list="browsers" name="job4" type="number">	
+<datalist id="browsers">
+
+{% for item in tmp %}
+
+<option value={{item.0}}>{{item.0}}</option>
+
+{% endfor %}
+</datalist>
+<br>
+5.
+<input style="font-size:23px;width:124px;height:60px;" list="browsers" name="job5" type="number">	
+<datalist id="browsers">
+
+{% for item in tmp %}
+
+<option value={{item.0}}>{{item.0}}</option>
+
+{% endfor %}
+
+</datalist>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+6.
+<input style="font-size:23px;width:124px;height:60px;" list="browsers" name="job6" type="number">	
+<datalist id="browsers">
+
+{% for item in tmp %}
+
+<option value={{item.0}}>{{item.0}}</option>
+
+{% endfor %}
+</datalist>
+
+
+
+<br>
+
+
+
+
+
+	
+
+</th></tr>
+
+
+
+</table>
+</center>
+</form>
+
+
+
+<!-- Below Script creates datalist structure for old browsers and Safari -->
+<script>
+$(document).ready(function () {
+	var nativedatalist = !!('list' in document.createElement('input')) && 
+		!!(document.createElement('datalist') && window.HTMLDataListElement);
+	
+	if (!nativedatalist) {
+		$('input[list]').each(function () {
+			var availableTags = $('#' + $(this).attr("list")).find('option').map(function () {
+				return this.value;
+			}).get();
+			$(this).autocomplete({ source: availableTags });
+		});
+	}
+});
+</script>
+{% endblock %}

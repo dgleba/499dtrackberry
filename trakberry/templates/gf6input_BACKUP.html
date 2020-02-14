@@ -1,0 +1,181 @@
+
+{% extends "main.html" %}
+
+{% block refresh %}
+
+
+<!-- ******   Load Scripts for graphs  ****** -->
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script type="text/javascript">
+
+<!-- **************************************** -->
+
+
+google.load('visualization', '1', {
+    packages: ['corechart', 'line']
+});
+google.setOnLoadCallback(drawCurveTypes);
+
+function drawCurveTypes() {
+
+	var obj = [
+			{% for item in GList %}
+            [new Date({{item.0}}*1000),{{item.1}},{{item.2}},{{item.3}}],
+            {% endfor %}
+        ];
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('datetime', 'Date');
+    data.addColumn('number', 'Production');
+    data.addColumn('number', 'Target');
+	data.addColumn('number', '85% Target');
+	data.addRows(obj)
+
+ 
+    var options = {
+		title: "Shift Production Chart For {{request.session.machine_chart}}",
+		chartArea: {
+			backgroundColor: {
+				stroke: '#4322c0',
+				strokeWidth: 3
+			}
+		},
+		//backgroundColor: '#F5EBE1',
+        hAxis: {
+            title: 'Time',
+			format: "HH:mm",
+			gridlines: { count: 20 }
+			
+        },
+		
+        vAxis: {
+            title: 'Quantity',
+			gridlines: { count: 15 }
+        },
+        series: {
+            1: {
+                curveType: 'function'
+            }
+        }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+}
+    </script>
+	
+{% endblock %}
+
+
+
+{% block content %}
+
+<!-- ******   Load Style for Table  ****** -->
+	<link rel='stylesheet' href='/static/style_1/table1.css'>
+<!-- **************************************** -->
+{% if request.session.details_track = 0 %}
+	<meta http-equiv="refresh" content="15; url=/trakberry/display1" />
+{% endif %}	
+<br>
+<font style="margin-left:37%;font-size:225%;"><b>Live Tracking</b></font>
+
+{% if request.session.details_track = 0 %}
+	<a href="/trakberry/details_track/">
+	
+	<button style="text-align: left;width:75px;margin-left:10%;font-size: 70%;
+		background-color:#BD554D;
+		color: #ffffff;" /><center>Pause</center></button>
+	
+	</a></font><img src="/media/running.gif"  height="40" width="50">
+{% else %}
+	<a href="/trakberry/details_track/">
+		<button style="text-align: left;width:75px;margin-left:10%;font-size: 70%;
+		background-color:#2AA823;
+		color: #ffffff;" /><center>Resume</center></button>
+	
+	</a></font>
+	
+{% endif %}	
+
+
+
+
+<table style="width:70%;margin-left:10%;">
+<tr><th bgcolor="#B6D2DB" style="font-size: 200%;">
+<center>GF6 Input</center>
+</th></tr></table>
+<table style="width:70%;margin-left:10%;">
+<tr><th bgcolor="#B7CCB6"><center><font style="font-size:126%;"><b></b>OP 10 <font style="font-size:80%;">({{totalC}}pcs  )<br>OA:{{COA}}%</b></font></th><th bgcolor="#B7CCB6"><center><font style="font-size:126%;"><b>OP 20<font style="font-size:80%;"> ({{totalB}}pcs) <br> OA:{{BOA}}%</th><th bgcolor="#B7CCB6"><center><font style="font-size:126%;"><b>OP 30<font style="font-size:80%;"> ({{totalA}}pcs )<br> OA:{{AOA}}%</center></font></th></tr>
+{% for index in list %}
+	<tr>
+	<th bgcolor="#ffffff">
+
+
+
+
+
+		<a href="/trakberry/graph_gf6/get/{{index.16}}" onclick="window.open('/trakberry/graph_gf6/get/{{index.16}}', 'newwindow', 'width=1400, height=600'); return false;">
+		<button style="text-align: left;width:100%;height:100%;font-size: 120%;color: #000000;
+			border-style: solid;border-color:#A1A1A1;border-radius: 0p10x;background-color:green;
+			background-image: linear-gradient(0deg, {{index.20}},{{index.18}},{{index.19}});
+			"/><center><b>
+		{{index.16}}<br> <font style="font-size:80%;"><b>{{index.23}}pcs <br> OA: {{index.26}}</b></font></center> 
+
+	</th>
+	<th bgcolor="#ffffff">
+
+		
+		<a href="/trakberry/graph_gf6/get/{{index.8}}" onclick="window.open('/trakberry/graph_gf6/get/{{index.8}}', 'newwindow', 'width=1400, height=600'); return false;">	
+		<button style="text-align: left;width:100%;height:100%;font-size: 120%;color: #000000;
+			border-style: solid;border-color:#A1A1A1;border-radius: 0px;background-color:green;
+			background-image: linear-gradient(0deg, {{index.12}},{{index.10}},{{index.11}});
+			"/><center><b>
+		{{index.8}}<br> <font style="font-size:80%;"><b>{{index.15}}pcs<br>OA: {{index.25}}</font></center> 
+
+	</th>	
+	<th bgcolor="#ffffff">
+	
+	
+		<a href="/trakberry/graph_gf6/get/{{index.0}}" onclick="window.open('/trakberry/graph_gf6/get/{{index.0}}', 'newwindow', 'width=1400, height=600'); return false;">
+		
+		<button style="text-align: left;width:100%;height:100%;font-size: 120%;color: #000000;
+			border-style: solid;border-color:#A1A1A1;border-radius: 0px;background-color:green;
+			background-image: linear-gradient(0deg, {{index.4}},{{index.2}},{{index.3}});
+			"/><b><center>
+		{{index.0}} <br><font style="font-size:80%;"><b> {{index.7}}pcs<br> OA: {{index.24}}</font></center> 
+	</th>	
+	
+	</tr>			
+{% endfor %}
+				
+</table>
+
+	<br><br>
+		{% if request.session.machine_chart == "nope" %}
+    <div class="row">
+		<div class="col-sm-10">
+			
+		
+		</div>
+	</div>	
+	{% else %}
+
+    <div class="row">
+		<div class="col=sm-2">&nbsp;&nbsp;</div>
+		<div class="col-sm-8"><center>
+			<div id="chart_div" style="width: 100%; height: 500px;margin-left:15%; "></div>
+		
+		</div>
+		<div class="col=sm-2">
+		<a href="/trakberry/graph_close/">
+		<button style="text-align: left;width:2%;font-size: 70%; margin-left:10%;border-style:solid;border-color:#A1A1A1;background-color:#C9C9C9;border-radius: 5px;color: #000000;">
+		<center><b>X</b></center></button></a>
+		
+		
+		
+		
+		</div>
+	</div>	
+{% endif %}
+{% endblock %}	
+

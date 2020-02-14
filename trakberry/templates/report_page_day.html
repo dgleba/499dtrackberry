@@ -1,0 +1,223 @@
+
+{% extends "gf6input.html" %}
+
+{% block styleA %}
+
+
+@media screen {
+    body {background-color: green;}
+    v{font-size: 100%;}
+    t{font-size: 100%;}
+    o{font-size: 100%;}
+    
+    table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+	}
+	th, td {padding: 0px;}
+	.noPrint { display:initial; }
+	}
+
+@media print {
+	@page {size: landscape}
+	body {font-family: Georgia, serif;background: none;color: black;}
+	#page {width: 100%;margin: 0; padding: 0;background: none;}
+	#container, #container2, #content
+	{width: 100%; margin: 0; float: none;}
+
+    table, th, td {border: 1px solid black;border-collapse: collapse;}
+    th, td {padding: .25px;}
+	v{font-size:100%;}
+    t{font-size: 60%;}
+    o{font-size: 50%;}
+    #header, #nav, .noPrint {display: none;}
+	}
+
+a.blue:link {color: black;}
+a.blue:active {color: black;}
+a.blue:visited {color: black;}
+a.blue:hover {color: black;}
+
+{% endblock %}
+
+{% block refresh %}
+{% if request.session.details_track = 0 %}
+
+{% endif %}	
+
+	
+{% endblock %}
+
+
+
+
+{% block content %}
+
+
+
+<br><br><br><br>
+<div class="noPrint"><br></div>
+
+
+<v><font style="margin-left:37%;font-size:225%;"><b><t>Report &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></font>
+<div class="noPrint"><button style="margin-left:10%;" onclick="myFunction()"><b>Print</b></button></div></v>
+<br>
+
+<t><font style="margin-left:37%;font-size:100%;"><b>{{S}}</b></font></t>
+
+
+<br>
+
+
+
+<table style="width:70%;margin-left:10%;">
+<tr><th bgcolor="#CCDDE3" style="font-size: 200%;" colspan="13">
+<center><t>Magna</center></t></th>
+</tr>
+<tr>
+<th bgcolor="#CCDDE3" rowspan="2"><center><t>Shift</t></th>
+<th bgcolor="#B7CCB6" colspan="6"><center><t>Trilobe</t></th>
+<th bgcolor="#D9A4ED" colspan="6"><center><t>Optimized</t></th>
+
+</tr>
+	<tr>
+	<th bgcolor="#B7CCB6"><center><t>Machine</t></th>
+	<th bgcolor="#B7CCB6"><center><t>Part</t></th>
+	<th bgcolor="#B7CCB6"><center><t>Count</t></th>
+	<th bgcolor="#B7CCB6"><center><t>Target&nbsp;</t></th>
+	<th bgcolor="#B7CCB6"><center><t>Shift OA&nbsp;&nbsp;&nbsp;</t></th>
+	<th bgcolor="#B7CCB6"><center><t>Day OA</t></th>
+	<th bgcolor="#D9A4ED"><center><t>Machine</t></th>
+	<th bgcolor="#D9A4ED"><center><t>Part</t></th>
+	<th bgcolor="#D9A4ED"><center><t>Count</t></th>
+	<th bgcolor="#D9A4ED"><center><t>Target&nbsp;</t></th>
+	<th bgcolor="#D9A4ED"><center><t>Shift OA&nbsp;&nbsp;&nbsp;</t></th>
+	<th bgcolor="#D9A4ED"><center><t>Day OA</t></th>
+	</tr>
+	
+	
+	<tr>
+{% for index in List %}
+	
+{% if index.8 == 0 %}
+<td  bgcolor="#FAFAF5" rowspan="4">	<center><t>Mid</t></td>
+{% endif %}
+{% if index.8 == 12 %}
+<td  bgcolor="#D8EBC5" rowspan="4">	<center><t>Day</t></td>
+{% endif %}
+{% if index.8 == 24 %}
+<td  bgcolor="#FAFAF5" rowspan="4">	<center><t>Aft</t></td>
+{% endif %}
+
+{% if index.4 == 2 %}		
+
+
+
+{% if index.7 == 1 %}
+<!-- display GF6 input OP10 data -->
+<!-- index.0 (machine) index.1(count) index.2(part) index.5(OEE) -->
+<!-- index.6 (target)  -->
+	{% if index.0 == '8' %}
+
+	{% else %}
+
+		<td  bgcolor="#D8EBC5">	<center><o><a href="/trakberry/graph_gf6_report/get/{{index.0}}{{ index.10 }}" onclick="window.open('{{request.session.local_toggle}}/graph_gf6_report/get/{{index.0}}{{index.10}}', 'newwindow', 'width=1400, height=600'); return false;" class="blue">{{index.0}}</a></o></td>
+		<td  bgcolor="#D8EBC5">	<center><o>{{index.2}}</o></td>
+		<td  bgcolor="#D8EBC5">	<center><o>{{index.1}}</o></o></td>
+		<td  bgcolor="#D8EBC5">	<center><o>{{index.6}}</o></td>
+		<td  bgcolor="#D8EBC5">	<center><o>{{index.5}}</o></td>
+	{% endif %}
+
+{% if index.8 == 12 %}
+<td  bgcolor="#D8EBC5" rowspan="4">	<center><t>---</t></td>
+{% endif %}
+
+
+
+{% endif %}
+{% if index.7 == 2 %}
+<!-- display GF6 input OP20 data --  Put a blank in when --- comes in as machine number -->
+	{% if index.0 == '8' %}
+
+	{% else %}
+		<td  bgcolor="#E5C2F2"><center><o><a href="/trakberry/graph_gf6_report/get/{{index.0}}{{ index.10 }}" onclick="window.open('{{request.session.local_toggle}}/graph_gf6_report/get/{{index.0}}{{index.10}}', 'newwindow', 'width=1400, height=600'); return false;" class="blue">{{index.0}}</a></o></td>
+		<td  bgcolor="#E5C2F2"><center><o>{{index.2}}</o></td>
+		<td  bgcolor="#E5C2F2"><center><o>{{index.1}}</o></td>
+		<td  bgcolor="#E5C2F2">	<center><o>{{index.6}}</o></td>
+		<td  bgcolor="#E5C2F2">	<center><o>{{index.5}}</o></td>
+	{% endif %}
+
+{% if index.8 == 13 %}
+<td  bgcolor="#E5C2F2" rowspan="4">	<center><t>---</t></td>
+{% endif %}
+
+{% endif %}
+
+
+{% else %}
+{% if index.7 == 1 %}
+<!-- display GF6 input OP10 data -->
+<!-- index.0 (machine) index.1(count) index.2(part) index.5(OEE) -->
+<!-- index.6 (target)  -->
+	{% if index.0 == '8' %}
+
+	{% else %}
+<td  bgcolor="#FAFAF5">	<center><o><a href="/trakberry/graph_gf6_report/get/{{index.0}}{{ index.10 }}" onclick="window.open('{{request.session.local_toggle}}/graph_gf6_report/get/{{index.0}}{{index.10}}', 'newwindow', 'width=1400, height=600'); return false;" class="blue">{{index.0}}</a></o></td>
+<td  bgcolor="#FAFAF5">	<center><o>{{index.2}}</o></td>
+<td  bgcolor="#FAFAF5">	<center><o>{{index.1}}</o></td>
+<td  bgcolor="#FAFAF5">	<center><o>{{index.6}}</o></td>
+<td  bgcolor="#FAFAF5">	<center><o>{{index.5}}</o></td>
+{% endif %}
+{% if index.8 == 0 %}
+<td  bgcolor="#FAFAF5" rowspan="4">	<center><t>---</t></td>
+{% endif %}
+{% if index.8 == 24 %}
+<td  bgcolor="#FAFAF5" rowspan="4">	<center><t>---</t></td>
+{% endif %}
+
+{% endif %}
+{% if index.7 == 2 %}
+<!-- display GF6 input OP20 data -->
+	{% if index.0 == '8' %}
+
+	{% else %}
+		<td  bgcolor="#F0E4F5"><center><o><a href="/trakberry/graph_gf6_report/get/{{index.0}}{{ index.10 }}" onclick="window.open('{{request.session.local_toggle}}/graph_gf6_report/get/{{index.0}}{{index.10}}', 'newwindow', 'width=1400, height=600'); return false;" class="blue">{{index.0}}</a></o></td>
+		<td  bgcolor="#F0E4F5"><center><o>{{index.2}}</o></td>
+		<td  bgcolor="#F0E4F5"><center><o>{{index.1}}</o></td>
+		<td  bgcolor="#F0E4F5">	<center><o>{{index.6}}</o></td>
+		<td  bgcolor="#F0E4F5">	<center><o>{{index.5}}</o></td>
+	{% endif %}
+
+
+{% if index.8 == 1 %}
+<td  bgcolor="#F0E4F5" rowspan="4">	<center><t>---</t></td>
+{% endif %}
+
+{% if index.8 == 25 %}
+<td  bgcolor="#F0E4F5" rowspan="4">	<center><t>---</t></td>
+{% endif %}
+
+
+{% endif %}
+
+
+{% endif %}
+
+
+
+
+
+
+
+
+{% if index.7 == 3 %}
+</tr><tr>
+{% endif %}
+
+{% endfor %}
+</table>
+
+
+<br><br>
+
+{% endblock %}	

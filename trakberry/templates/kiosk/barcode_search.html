@@ -1,0 +1,25 @@
+{% extends "kiosk/barcode_main.html" %}
+{% block content %}
+<body style="background-color:rgb(211, 211, 211);">
+<form action="" method="post">{% csrf_token %}
+<br><br><br><br><br><br><br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font style="font-size: 75px; color:rgb(176, 161, 240); text-shadow: 1px 1px 2px black, 1px 1px 2px blue, 1px 1px 2px rgb(95, 184, 11);">
+
+Scan Part To Search
+
+</font>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input style="font-size:23px;width:900px;height:60px;text-align:center;" name="barcode" type="text"  autofocus/ >
+
+
+</form>
+
+<br><br><br><br>
+<br><br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+</body>
+{% endblock %}

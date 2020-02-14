@@ -1,0 +1,70 @@
+
+{% extends "main.html" %}
+
+				
+{% block content %}
+
+				
+				
+<div class="container"><br><br><br>
+    <div class="row">
+		<div class="col-sm-8">
+		<center><font color="black" style="z-index: 9999;"><h2><b><u>Jobs</u></b></h2> </font></center><br>
+<form action="" method="post">{% csrf_token %}
+<!-- Style my form to [form_css]  -->
+
+<table>
+<tr><td><b><u>Description</b></u>&nbsp;&nbsp;&nbsp;</td><td>
+	<select name ="description">
+	<option value="6L Output">6L Output</option>
+<option value="6L Input">6L Input</option>
+<option value="GF6 Input">GF6 Input</option>
+<option value="GF6 Reaction">GF6 Reaction</option>
+<option value="GFx">GFx</option>
+
+<option value="Furnace">Furnace</option>
+<option value="Inspection">Inspection</option>
+<option value="Press">Press</option>
+<option value="Wash">Wash</option>
+<option value="Production">Production</option>
+
+
+</select>
+
+	
+</td></tr>
+
+
+
+<tr><td><b><u>Job</b></u>&nbsp;&nbsp;&nbsp;</td><td><input style="font-size:14px;width:320px;height:30px;" type="text" name="job_name"></td></tr>
+
+
+<tr><td><b><u>Position</b></u>&nbsp;&nbsp;&nbsp;</td><td>
+	<select name ="position">
+	<option value="CNC">CNC</option>
+<option value="Production">Production</option>
+<option value="CSD 1">CSD 1</option>
+
+
+</select>
+
+	
+</td></tr>
+
+
+
+<tr><td>
+  <input style="background-color: #999999;border-radius: 10px;width:90px;height:30px;" type="submit"></td></tr>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</table>
+
+</form>
+		 
+
+		</div>
+	</div>	
+</div>	
+
+
+{% endblock %}	

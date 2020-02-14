@@ -1,0 +1,69 @@
+<!-- Extend off main_extends1 which extends off Main.  Main extends just adds styling -->
+{% extends "main_extends1.html" %}
+
+{% block content %}
+<!--
+<br><br><center>
+-->
+<!--   *******************************Below is test code   ********************************* -->
+
+<!-- Load Bootstrap toggle button -->
+
+<script>
+function goBack() {
+    window.history.back();
+}
+
+
+        window.onload = function() {
+
+
+          var a = document.getElementById("mylink");
+
+
+          a.onclick = function() {
+
+
+            return false;
+          }
+        }
+        
+        
+</script>
+
+
+<br><br><center>
+<table style="width:25%;"> 
+<tr><td bgcolor="#CCDDE3" style="font-size:30px;width:45%;">
+<b><center>
+Schedule Already Made for : {{request.session.date_curr}}
+</center></b>
+</table>
+
+<table style="width:25%;">
+	<tr>
+		<td bgcolor="#FFFFF6" style="font-size:16px;width:45%;">
+		Please Change Date
+		</td>
+	</tr> 
+</table>
+
+
+
+
+<br>
+<!-- Best way to add a button to reroute back -->
+<button style="font-size:20px;" onclick="goBack()">  &nbsp;&nbsp;&nbsp;&nbsp;<b>   << Go Back   </b>   &nbsp;&nbsp;&nbsp;&nbsp;</button> 
+
+<!--<a id="mylink" href="/trakberry/schedule_set2"><button style="font-size:20px;" >RETRY</button></a> -->
+<br></a>  
+
+<!--
+<button style="font-size:20px;" onclick="http://pmdsdata3.stackpole.ca:8986/trakberry/schedule_set2">  &nbsp;&nbsp;&nbsp;&nbsp;<b>   << Retry   </b>   &nbsp;&nbsp;&nbsp;&nbsp;</button> -->
+<br>
+
+<!-- add a link to a reroute site 
+<a id="mylink" href="http://www.tsn.com">linky</a>  
+-->
+
+{% endblock %}	

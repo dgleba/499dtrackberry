@@ -1,0 +1,34 @@
+<html>
+
+<!-- Redirect page back to url call of '/trakberry/test' going to display view and back to this page  -->
+<!-- Do this to update time and information from database reads  -->
+
+<font size="3" color="black">
+Year: {{Hour.0}} <br>
+Month: {{Hour.1}} <br>
+Day: {{Hour.2}} <br>
+Hour: {{Hour.3}} <br>
+Min: {{Hour.4}} <br>
+Sec: {{ Hour.5 }} <br><br>
+Time : {{Time}}<br><br>
+Time2 : {{Time2}}<br><br>
+<!--
+Year2: {{Hours.0}} <br>
+Month2: {{Hours.1}} <br>
+Day2: {{Hours.2}} <br>
+Hour2: {{Hours.3}} <br>
+Min2: {{Hours.4}} <br>
+Sec2: {{ Hours.5 }} <br><br>
+
+Time2 : {{Time2}}
+
+-->
+Unix Start: {{ request.session.s_date}}  <br>
+Unix End: {{ request.session.e_date}}  <br>
+
+<br><br>
+<br><br><br><br>
+Start Time Stamp : {{ Stamp}} <br><br>
+Start Tuple Time : {{ Tuple.3}} : {{Tuple.4}}
+</font>
+</body></html>

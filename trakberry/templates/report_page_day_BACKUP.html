@@ -1,0 +1,72 @@
+{% extends "main.html" %}
+		
+
+{% block content %}
+
+
+<div class="container"><br><br><br>
+    <div class="row">
+		<div class="col-sm-8">
+		<center><div id="title"><font color="black" style="z-index: 9999;"><h2><b><u>Production Reports</u></b></h2> </font></div></center>
+		
+
+		<div style="width:31%;" id="print"><input id="print-bnt" type="button" onclick="myFunction()" value="Print"></div>
+		
+		<br>
+		<center><font color="black" style="z-index: 9999;"><h4>({{S.0}}-{{S.1}}-{{S.2}}) </u></font><br><br>
+		<table style="border: 1px solid black;border-collapse: collapse;">
+		<tr><td  bgcolor="#C2C2D6" style="border: 1px solid black;border-collapse: collapse;padding:4px;"><center><font color="black" size="4" style="z-index: 9999;"></td><td  bgcolor="#C2C2D6" style="border: 1px solid black;border-collapse: collapse;padding:4px;"><center><font color="black" size="4" style="z-index: 9999;">Machine</td><td  bgcolor="#C2C2D6" style="border: 1px solid black;border-collapse: collapse;padding:4px;"><center><font color="black" size="4" style="z-index: 9999;">Part</td><td  bgcolor="#C2C2D6" style="border: 1px solid black;border-collapse: collapse;padding:4px;"><center><font color="black" size="4" style="z-index: 9999;">Production</td></tr>
+		
+		
+		{% for i in List %}
+		<tr>
+		{% if i.3 == 3 %}
+		
+		<td>Afternoons</td>
+		{% endif %}
+
+		{% if i.3 == 1 %}
+		
+		<td>Midnights</td>
+		{% endif %}	
+		
+		{% if i.3 == 2 %}
+			<td style="background-color: #C2C2D6;">Days</td>
+		{% endif %}	
+		{% if i.3 == 0 %}
+			{% if i.4 == 2 %}
+				<td style="background-color: #C2C2D6;"></td>
+			{% else %}	
+				<td></td>
+			{% endif %}	
+			
+		 {% endif %}
+			
+		
+
+		{% if i.4 == 2 %}
+		<td style="border: 1px solid black;border-collapse: collapse;padding:4px;background-color: #C2C2D6;"><center><font color="black" size="4" style="z-index: 9999;">{{ i.0}}</td><td style="border: 1px solid black;border-collapse: collapse;padding:4px;background-color: #C2C2D6;"><center><font color="black" size="4" style="z-index: 9999;"> {{ i.2}}  </td></td><td style="border: 1px solid black;border-collapse: collapse;padding:4px;background-color: #C2C2D6;"><center><font color="black" size="4" style="z-index: 9999;"> {{ i.1}}  </td></tr>
+		{% else %}
+		<td style="border: 1px solid black;border-collapse: collapse;padding:4px;"><center><font color="black" size="4" style="z-index: 9999;">{{ i.0}}</td><td style="border: 1px solid black;border-collapse: collapse;padding:4px;"><center><font color="black" size="4" style="z-index: 9999;"> {{ i.2}}  </td></td><td style="border: 1px solid black;border-collapse: collapse;padding:4px;"><center><font color="black" size="4" style="z-index: 9999;"> {{ i.1}}  </td></tr>
+		{% endif %}
+		
+		{% if i.3 == 99 %}
+		<tr><td style="border: 1px solid black;border-collapse: collapse;padding:4px;"></td></tr>
+		
+		{% endif %}	
+		
+{% endfor %}
+		</table></center>
+		  </div>
+
+		</div>
+	</div>	
+</div>	
+<script>
+function myFunction() {
+    window.print();
+}
+
+</script>
+
+{% endblock %}	

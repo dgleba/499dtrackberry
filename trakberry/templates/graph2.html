@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <script type="text/javascript"
+          src="https://www.google.com/jsapi?autoload={
+            'modules':[{
+              'name':'visualization',
+              'version':'1',
+              'packages':['corechart']
+            }]
+          }"></script>
+
+    <script type="text/javascript">
+      google.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Min', 'Running', 'Potential'],
+          ['3:00',  10,      21],
+          ['3:30',  34,      42],
+          ['4:00',  67,       63],
+          ['4:30',  72,      84],
+		  ['5:00',  91,      105],
+		  ['5:30',  {{X}},      126],
+		  ['6:00',  111,      147],
+		  ['6:30',  131,      168],
+		  ['7:00',  {{Y}},      189]
+        ]);
+
+        var options = {
+          title: 'Company Performance',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="curve_chart" style="width: 500px; height: 300px"></div>
+  </body>
+</html>
+

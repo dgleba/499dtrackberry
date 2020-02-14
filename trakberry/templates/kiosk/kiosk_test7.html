@@ -1,0 +1,34 @@
+
+<html>
+        <head>
+        <!-- Test  -->
+         <!-- Format for Background image -->
+        <style type="text/css">
+
+
+#full-screen-background-image {z-index: -999;min-height: 110%; min-width: 100%;width: 100%;height: 110%;position: fixed;top: ;  left: 0;}
+</style>
+</head>       
+
+
+<body>
+
+
+
+{% for i in tmp %}
+{{i}}<br>
+{% endfor %}
+
+<br><br><br>
+
+{{tmp}}
+
+
+<br><br>
+{{request.session.Asset}} : {{request.session.lst2}}
+
+
+<br><br><br>
+Done !!
+
+</body></html>

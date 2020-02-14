@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/static/multidrop/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://www.jquery-az.com/boots/style-2.css">
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://www.jquery-az.com/boots/css/bootstrap-multiselect/bootstrap-multiselect.css" type="text/css">
+  <script type="text/javascript" src="https://www.jquery-az.com/boots/js/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+</head>
+
+<body>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#drop1').multiselect();
+    });
+</script>
+
+
+<form action="" method="post">{% csrf_token %}
+<select id="drop1" name="d1" multiple="multiple" type="file">
+    {% for i in request.session.tmp2 %}
+      <option value={{i.0}}>{{i.0}}</option>
+    {% endfor %}
+</select>
+<!-- <input name="drop1" type="text"> -->
+<input type="submit" value="Enter" name="button1">
+ </form>
+<!-- multi-select-demo-->
+</body>
+</html>

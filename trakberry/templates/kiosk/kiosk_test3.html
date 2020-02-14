@@ -1,0 +1,46 @@
+
+{% extends "kiosk/kiosk.html" %}
+{% block content%} 
+    <style>
+            table {
+              border-collapse: collapse;
+              border-spacing: 0;
+              width: 99%;
+
+            }
+            
+            th, td {
+              text-align: center;
+              padding: 7px;
+            }
+
+    
+            a.blue:link {color: black;}
+            a.blue:active {color: black;}
+            a.blue:visited {color: black;}
+            a.blue:hover {color: black;background-color: rgb(255, 223, 78);border-radius: 10px;}
+    
+    </style>
+
+
+
+
+
+    <center><br><br><br>
+    <table style="overflow-x:auto;">
+    <tr><td nowrap><font size ="2" style="color:rgb(100, 100, 100)">
+                    <a href="{{request.session.local_toggle}}/kiosk_hourly_entry" class="blue">
+                        <button class="button"><font size="7"><b>White Board</b></font></button>
+                    </a></td>
+        <td nowrap><font size ="2" style="color:rgb(100, 100, 100)">
+        <a href="{{request.session.local_toggle}}/kiosk_job_assign" class="blue">
+        <button class="button"><font size="7"><b>Production Entry</b></font></button>
+        </a></td>
+ 
+        </tr>
+
+    
+    </table>
+    </center>
+
+    {% endblock %} 

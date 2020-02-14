@@ -1,0 +1,216 @@
+<!-- ********************************** -->
+<!-- ****   Kiosk_Production_Entry.html   *** -->
+<!-- ********************************** -->
+
+
+{% extends "kiosk/kiosk.html" %}
+
+{% block grid %}
+	<link rel="stylesheet" href="/static/style_1/grid_kiosk_job_production.css?{{TCUR}}">
+
+	
+	
+{% endblock %}
+
+
+{% block content %}
+
+<form action="" method="post">{% csrf_token %}
+
+
+
+<br><br>
+<center>
+<div class="grid-container">
+
+	<div class="item2">
+		<input style="background-color: #AAA00A;border-radius: 10px;width:140px;height:60px;font-weight: 700;font-size:23px;align=left;" type="submit" value="Enter">
+	</div>
+	<div class="item2"></div>
+	<div class="item2"></div>
+	<div class="item2"></div>
+	<div class="item2">
+		<button style="background-color: #AAAAAA;border-radius: 10px;width:120px;height:60px;font-weight: 700;font-size:23px;align=left;" type="submit" name="kiosk_assign_button1" value="-1">Cancel</button>
+	</div>
+	
+	
+	<div class="item2"><font color="#000000" size ="5"><u><b>Clock</b></u></font></div>
+	<div class="item2"><font color="#000000" size ="5"><u><b>Date</b></u></font></div>
+	<div class="item2"></div>
+	<div class="item2"><font color="#000000" size ="5"><u><b>Shift</b></u></font></div>
+	<div class="item2"></div>
+	
+	<div class="item2"><input style="font-size:23px;width:100px;height:60px;text-align:center;" name="clock" type="number" value={{request.session.clock}}></div>
+	<div class="item3"><input style="font-size:23px;width:200px;height:60px;text-align:center;" type="date" name="date_en" value={{Curr}}></div>
+	<div class="item2">
+		<select  style="font-size:23px;width:100px;height:60px;text-align:center;" name="shift" id="shift">
+			<option selected = "selected">{{Shift}} </option>
+			<option> Mid </option>
+			<option> Day </option>
+			<option> Aft </option>
+		</select>
+	</div>
+	<div class="item2"></div>
+	
+	<div class="item2"><font color="#000000" size ="5"><u><b>Jobs</b></u></font> </div>
+	<div class="item2"><font color="#000000" size ="5"><u><b>Part</b></u></font> </div>
+	<div class="item2"><font color="#000000" size ="5"><u><b>Production</b></u></font> </div>
+	<div class="item2"><font color="#000000" size ="5"><u><b>Hours</b></u></font> </div>
+	<div class="item2"><font color="#000000" size ="5"><u><b>Downtime </b></u></font> </div>
+
+{% if request.session.variable1 != 99 %}
+	<div class="item2"><input style="font-size:23px;width:100px;height:60px;text-align:center;" value={{request.session.variable1}}  name="job1" type="text"></div>
+
+	{% if request.session.part1 = -1 %}
+		<div class="item2">
+			<select style="font-size:18px;width:100px;height:60px;text-align:center;" name="part1" type="text"  autofocus>
+				<option selected = "selected"></option>
+				{% for k in Parts %}
+					<option>{{k.0}}</option>
+				{% endfor %}
+			</select>
+		</div>
+	{% else %}
+		<div class="item2">
+			<select style="font-size:16px;width:100px;height:60px;text-align:center;" name="part1" type="text">
+				<option selected = "selected">{{request.session.part1}}  </option>
+				{% for k in Parts %}
+					<option>{{k.0}}</option>
+				{% endfor %}
+			</select>
+		</div>
+	{% endif %}
+	{% if request.session.part1 = -1 %}
+		<div class="item2"><input style="font-size:23px;width:100px;height:60px;"  name="prod1" type="number" autofocus></div>
+	{% else %}
+		<div class="item2"><input style="font-size:23px;width:100px;height:60px;"  name="prod1" type="number" autofocus></div>
+	{% endif %}
+	
+	<div class="item2">
+		<select style="font-size:23px;width:100px;height:60px;text-align:center;"  value = 8 name="hrs1" type="text">
+			<option selected = "selected">8</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+			<option>5</option>
+			<option>6</option>
+			<option>7</option>
+			<option>8</option>
+		</select>
+	</div>
+	
+	<div class="item2"><input style="font-size:23px;width:100px;height:60px;"  name="dwn1" type="text"></div>
+{% endif %}
+
+{% if request.session.variable2 != 99 %}
+	<div class="item2"><input style="font-size:23px;width:100px;height:60px;text-align:center;" value={{request.session.variable2}}  name="job2" type="text"></div>
+
+	<!-- Safeguard test is set to -1 if no value is found -->
+	{% if request.session.part2 = -1 %}
+		<div class="item2">
+			<select style="font-size:18px;width:100px;height:60px;text-align:center;" name="part2" type="text" >
+				{% for k in Parts %}
+					<option>k</option>
+				{% endfor %}
+			</select>
+		</div>
+	{% else %}
+		<div class="item2">
+			<select style="font-size:16px;width:100px;height:60px;text-align:center;" name="part2" type="text">
+				<option selected = "selected">{{request.session.part2}}  </option>
+				{% for k in Parts %}
+					<option>{{k.0}}</option>
+				{% endfor %}
+			</select>
+		</div>
+	{% endif %}
+	<!--   end of safegaurd test -->
+
+	<div class="item2"><input style="font-size:23px;width:100px;height:60px;"  name="prod2" type="number"></div>
+	<div class="item2">
+		<select style="font-size:23px;width:100px;height:60px;text-align:center;"  value = 8 name="hrs2" type="text">
+			<option selected = "selected">8</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+			<option>5</option>
+			<option>6</option>
+			<option>7</option>
+			<option>8</option>
+		</select>
+	</div>
+	<div class="item2"><input style="font-size:23px;width:100px;height:60px;"  name="dwn2" type="text"></div>
+{% endif %}
+
+{% if request.session.variable3 != 99 %}
+<div class="item2"><input style="font-size:23px;width:100px;height:60px;text-align:center;" value={{request.session.variable3}}  name="job3" type="text"></div>
+	<!-- Safeguard test is set to -1 if no value is found -->
+	{% if request.session.part3 = -1 %}
+		<div class="item2">
+			<select style="font-size:16px;width:100px;height:60px;text-align:center;" name="part3" type="text">
+				{% for k in Parts %}
+					<option>{{k.0}}</option>
+				{% endfor %}
+			</select>
+		</div>
+	{% else %}
+		<div class="item2">
+			<select style="font-size:18px;width:100px;height:60px;text-align:center;" name="part3" type="text">
+				<option selected = "selected">{{request.session.part3}}  </option>
+				{% for k in Parts %}
+					<option>{{k.0}}</option>
+				{% endfor %}
+			</select>
+		</div>
+	{% endif %}
+	<!--   end of safegaurd test -->
+<div class="item2"><input style="font-size:23px;width:100px;height:60px;"  name="prod3" type="number" autofocus></div>
+<div class="item2">
+		<select style="font-size:23px;width:100px;height:60px;text-align:center;"  value = 8 name="hrs3" type="text">
+			<option selected = "selected">8</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+			<option>5</option>
+			<option>6</option>
+			<option>7</option>
+			<option>8</option>
+		</select>
+</div>
+<div class="item2"><input style="font-size:23px;width:100px;height:60px;"  name="dwn3" type="text"></div>
+{% endif %}
+
+{% if request.session.variable4 != 99 %}
+<div class="item2"><input style="font-size:23px;width:100px;height:60px;text-align:center;" value={{request.session.variable4}}  name="job4" type="text"></div>
+<div class="item2"><input style="font-size:18px;width:100px;height:60px;text-align:center;"  value={{request.session.part4}} name="part4" type="text" ></div>
+<div class="item2"><input style="font-size:23px;width:100px;height:60px;"  name="prod4" type="number" autofocus></div>
+<div class="item2"><input style="font-size:23px;width:100px;height:60px;text-align:center;"  value = 8 name="hrs4" type="text"></div>
+<div class="item2"><input style="font-size:23px;width:100px;height:60px;"  name="dwn4" type="text"></div>
+{% endif %}
+
+{% if request.session.variable5 != 99 %}
+<div class="item2"><input style="font-size:23px;width:100px;height:60px;text-align:center;" value={{request.session.variable5}}  name="job5" type="text"></div>
+<div class="item2"><input style="font-size:18px;width:100px;height:60px;text-align:center;"  value={{request.session.part5}} name="part5" type="text" ></div>
+<div class="item2"><input style="font-size:23px;width:100px;height:60px;"  name="prod5" type="number" autofocus></div>
+<div class="item2"><input style="font-size:23px;width:100px;height:60px;text-align:center;"  value = 8 name="hrs5" type="text"></div>
+<div class="item2"><input style="font-size:23px;width:100px;height:60px;"  name="dwn5" type="text"></div>
+{% endif %}
+
+{% if request.session.variable6 != 99 %}
+<div class="item2"><input style="font-size:23px;width:100px;height:60px;text-align:center;" value={{request.session.variable6}}  name="job6" type="text"></div>
+<div class="item2"><input style="font-size:18px;width:100px;height:60px;text-align:center;"  value={{request.session.part6}} name="part6" type="text" ></div>
+<div class="item2"><input style="font-size:23px;width:100px;height:60px;"  name="prod6" type="number" autofocus></div>
+<div class="item2"><input style="font-size:23px;width:100px;height:60px;text-align:center;"  value = 8 name="hrs6" type="text"></div>
+<div class="item2"><input style="font-size:23px;width:100px;height:60px;"  name="dwn6" type="text"></div>
+{% endif %}
+
+</div>
+</form>
+
+
+
+
+{% endblock %}

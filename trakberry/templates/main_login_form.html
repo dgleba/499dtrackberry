@@ -1,0 +1,61 @@
+{% extends "main_log.html" %}
+<!-- main_login_form.html -->
+{% block content %}
+<div class="container"><br><br><br>
+    <div class="row">
+		<div class="col-sm-8">
+			
+<form action="" method="post">{% csrf_token %}
+<!-- Style my form to [form_css]  -->
+<table>
+<tr><td colspan="2" style="font-size:25px;"><b><u><center>LOG IN</center></b></u></td><tr>
+<tr><td>&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td><b><u>Login Name</b></u>&nbsp;&nbsp;&nbsp;</td><td>
+
+
+<select style="font-size:14px;width:320px;height:30px;" name="login_name" >
+
+<option value="Brad Sproat">Brad Sproat</option>
+<option value="Chris Dufton">Chris Dufton</option>
+<option value="Dave Clark">Dave Clark</option>
+<option value="Dave Milne">Dave Milne</option>
+<option value="Don Barber">Don Barber</option>
+<option value="Jennifer Button">Jennifer Button</option>
+<option value="Karl Edwards">Karl Edwards</option>
+<option value="Ken Frey">Ken Frey</option>
+<option value="Kevin Baker">Kevin Baker</option>
+<option value="Kevin Faubert">Kevin Faubert</option>
+<option value="Mark Phillips">Mark Phillips</option>
+<option value="Matt Ohm">Matt Ohm</option>
+<option value="Mike Clarke">Mike Clarke</option>
+<option value="Pete Murphy">Pete Murphy</option>
+<option value="Rick Wurm">Rick Wurm</option>
+<option value="Rob Zylstra">Rob Zylstra</option>
+<option value="Scott Brownlee">Scott Brownlee</option>
+<option value="Scott Herman">Scott Herman</option>
+<option value="Scott McMahon">Scott McMahon</option>
+<option value="Steven Koehler">Steven Koehler</option>
+
+
+
+</select>
+
+</td></tr>
+
+<tr><td><b><u>Password</b></u>&nbsp;&nbsp;&nbsp;</td><td><input style="font-size:14px;width:320px;height:30px;" type="password" name="login_password"></td></tr>
+
+<tr><td>&nbsp;&nbsp;&nbsp;</td></tr>
+
+<tr><td colspan="2" ><center>
+	<input style="background-color: #999999;border-radius: 10px;height:30px;" type="submit" name="button1" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENTER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input style="background-color: #999999;border-radius: 10px;height:25px;" type="submit" name="button2" value="&nbsp;&nbsp;&nbsp;&nbsp;Forgot Password&nbsp;&nbsp;&nbsp;&nbsp;">
+</center></td></tr>
+
+</table>
+</form>
+		  </div>
+
+		</div>
+	</div>	
+{% endblock %}

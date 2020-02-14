@@ -1,0 +1,18 @@
+{% extends "supervisor.html" %}
+
+{% block header %}
+
+<div class="col-sm-6">
+<form action="" method="post">{% csrf_token %}
+
+<table>
+<tr><td>
+<font color="#000000" size ="4">Remedy</td></tr><tr><td>
+<input style="font-size:14px;width:270px;height:30px;" name="reason" type="textarea">
+</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>
+<input type="submit" value="Submit"></td></tr>
+</table>
+</form>
+{% endblock %}

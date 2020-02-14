@@ -1,0 +1,21 @@
+{% extends "maint.html" %}
+{% block refresh %}
+{% endblock %}
+{% block close %}
+<div class="container"><br>
+
+
+{% for i in machine %}
+    <div class="row">
+
+		<div class="col-sm-12" style="background-color: #D8D8D8;height:37px;"><font color="#000000" size ="2"><b>{{i.2}}:</b>&nbsp;&nbsp;<u><b>{{i.0}}-&nbsp;&nbsp;{{i.1}}</b> ({{i.8}})</u>:&nbsp;{{ i.4}}<b><i>&nbsp;&nbsp;({{i.7}})</b></i></div>
+
+	</div>	
+
+
+	
+
+{% endfor %}
+
+</div>
+{% endblock %}

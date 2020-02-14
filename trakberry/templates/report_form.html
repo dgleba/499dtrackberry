@@ -1,0 +1,43 @@
+{% extends "main.html" %}
+
+				{%block active_1%}
+                <li><a href="/trakberry/main"><span class="glyphicon glyphicon-globe"></span> Main</a></li>
+				{% endblock%}
+				{%block active_3%}
+				<li class="active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports <b class="caret"></b></a>
+				{%endblock%}
+				
+{% block content %}
+
+				
+				
+<div class="container"><br><br><br>
+    <div class="row">
+		<div class="col-sm-8">
+		<center><font color="black" style="z-index: 9999;"><h2><b><u>Production Reports</u></b></h2> </font></center><br>
+<form action="" method="post">{% csrf_token %}
+<!-- Style my form to [form_css]  -->
+
+<table><tr><td>
+<b><u>Start Date</b></u></td><td>
+<input type="date" name="start_date"></td></tr>
+<tr><td><b><u>End Date</b></u></td><td>
+<input type="date" name="end_date"></td></tr>
+<tr><td>
+  <input style="background-color: #999999;border-radius: 10px;width:90px;height:30px;" type="submit"></td></tr>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</table>
+
+
+
+</form>
+		  </div>
+
+		</div>
+	</div>	
+</div>	
+
+
+{% endblock %}	

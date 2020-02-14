@@ -1,0 +1,58 @@
+
+<!-- ********************************** -->
+<!-- ****   Kiosk_Production_Entry.html   *** -->
+<!-- ********************************** -->
+
+
+{% extends "kiosk/kiosk.html" %}
+{% block content %}
+
+<form action="" method="post">{% csrf_token %}
+
+<center>
+<table style="width:70%;">
+
+<tr valign="middle"><th style="padding:20px;opacity: 0.99;filter:alpha(opacity=99);border-radius: 30px;" bgcolor="#DCDCDC" >
+	
+<!-- Place Stuff inside Box here  -->
+
+
+
+<br><br>
+<center>
+<font color="#000000" size ="6">Clock Number<br>
+<input style="font-size:23px;width:190px;height:60px;" name="clock" type="number" value={{request.session.clock}}>
+
+<br><br>
+<font color="#000000" size ="6"><u><b>Jobs</b></u></font> 
+<br>
+
+1.<input style="font-size:23px;width:124px;height:60px;" value={{request.session.variable1}} " name="job1" type="text">
+
+
+
+
+
+
+
+	
+
+</th></tr>
+
+
+
+</table>
+</center>
+</form>
+
+
+
+<!-- Below Script creates datalist structure for old browsers and Safari -->
+<script>
+$(document).ready(function(){
+    $("input").blur(function(){
+      $("form").submit();
+    });
+});
+</script>
+{% endblock %}

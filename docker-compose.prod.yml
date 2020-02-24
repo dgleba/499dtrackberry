@@ -8,7 +8,7 @@ services:
       - ./.env
     command: gunicorn --bind 0.0.0.0:8080 djangoproj.wsgi
     ports:
-      - "6466:8080"
+      - "6476:8080"
     depends_on:
       - nginx
     working_dir: /code
@@ -31,7 +31,7 @@ services:
       #- ./static:/code/static
       #- ./mediafiles:/code/media
     ports:
-      - "6467:80"
+      - "6477:80"
 
   db:
     image: mysql:5.7
@@ -42,7 +42,7 @@ services:
     # MYSQL_DATABASE: test
     command: --default-authentication-plugin=mysql_native_password
     ports:
-      - "6462:3306"
+      - "6472:3306"
     volumes:
       #   use PWD in mysql files volume so each project folder has it's own database folder. This is for mistake proofing. https://github.com/docker/compose/issues/2636
       - ../datasys/mysql$PWD:/var/lib/mysql/ # folder for mysql's internal data files.
@@ -63,7 +63,7 @@ services:
     image: adminer:4.7
     restart: always
     ports:
-      - 6463:8080
+      - 6473:8080
 
 #
 #

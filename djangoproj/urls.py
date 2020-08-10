@@ -21,7 +21,7 @@ from polls import views
 
 
 urlpatterns = [
-    path(r'trakberry/', include('trakberry.urls')),
+    # path(r'trakberry/', include('trakberry.urls')),
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
 ]

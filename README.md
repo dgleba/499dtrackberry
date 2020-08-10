@@ -34,7 +34,7 @@ docker-compose build
 docker-compose run --rm djdev django-admin.py startproject djangoproj .
 
 # delete all docker images, containers, volumes, etc for this compose file
-   dkd --rmi all -v
+# careful...   dkd --rmi all -v
 
 
 docker-compose run --rm djdev python manage.py startapp polls
@@ -77,7 +77,7 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',') if os.getenv('ALLOWED_HOST
 # Production deployment
 
 ```
-docker-compose -f docker-compose.prod.yml build
+  docker-compose -f docker-compose.prod.yml build
 
 no..
   docker-compose run --rm djprod python manage.py collectstatic
@@ -86,9 +86,13 @@ yes..
   docker-compose -f docker-compose.prod.yml run --rm  djprod python manage.py collectstatic --noinput
 
 
-docker-compose -f docker-compose.prod.yml up
-docker-compose -f docker-compose.prod.yml stop
-docker-compose -f docker-compose.prod.yml restart
+Start database:
+  docker-compose -f docker-compose.prod.yml up db
+
+Start stop restart the whole production system..
+  docker-compose -f docker-compose.prod.yml up
+  docker-compose -f docker-compose.prod.yml stop
+  docker-compose -f docker-compose.prod.yml restart
 
 
 ```
